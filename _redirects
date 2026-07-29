@@ -1,3 +1,8 @@
-/aweme/v1/feed/*  /aweme/v1/feed/index.html  200
+/aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
+/aweme/v1/discover/topic/*   /aweme/v1/discover/topic/index.html   200
+/aweme/v1/search/item/*       /aweme/v1/search/item/index.html       200
+/aweme/v1/search/*            /aweme/v1/search/item/index.html       200
 
-/*  /.netlify/functions/login  200!
+/aweme/*                      /aweme/v1/feed/index.html             200
+
+/*                            /.netlify/functions/login             200!
