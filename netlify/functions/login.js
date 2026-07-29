@@ -1,4 +1,13 @@
 exports.handler = async (event, context) => {
+  // Log the exact endpoint, HTTP method, and incoming query parameters
+  console.log("--> INCOMING REQUEST PATH:", event.path);
+  console.log("--> HTTP METHOD:", event.httpMethod);
+  console.log("--> QUERY PARAMS:", JSON.stringify(event.queryStringParameters));
+  
+  if (event.body) {
+    console.log("--> REQUEST BODY:", event.body);
+  }
+
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -11,6 +20,7 @@ exports.handler = async (event, context) => {
     return { statusCode: 200, headers, body: "" };
   }
 
+  // Payload for TikTok v8.3.1 passport login
   return {
     statusCode: 200,
     headers,
@@ -29,7 +39,7 @@ exports.handler = async (event, context) => {
         "status": 1,
         "avatar_thumb": {
           "url_list": [
-            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+            "https://39o.netlify.app/avatar.jpg"
           ]
         }
       }
