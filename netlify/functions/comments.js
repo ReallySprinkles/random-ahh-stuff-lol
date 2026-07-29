@@ -15,9 +15,11 @@ exports.handler = async (event, context) => {
     headers,
     body: JSON.stringify({
       status_code: 0,
+      error_code: 0,
       comments: [
         {
           cid: "7350000000000000001",
+          aweme_id: "7350000000000000001",
           text: "le test",
           create_time: 1700000000,
           digg_count: 13,
@@ -31,7 +33,9 @@ exports.handler = async (event, context) => {
                 "https://39o.netlify.app/avatar.jpg"
               ]
             }
-          }
+          },
+          reply_comment: null,
+          total_reply_count: 0
         }
       ],
       has_more: 0,
