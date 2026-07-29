@@ -27,7 +27,7 @@ exports.handler = async (event, context) => {
           user: {
             uid: "735712345678",
             unique_id: "sprinkles.dude",
-            nickname: "Sprinkles",
+            nickname: "sprinkles",
             avatar_thumb: {
               url_list: [
                 "https://39o.netlify.app/avatar.jpg"
