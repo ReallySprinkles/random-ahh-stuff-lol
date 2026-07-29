@@ -1,6 +1,8 @@
 /aweme/v1/comment/*          /.netlify/functions/comments     200
 /aweme/v2/comment/*          /.netlify/functions/comments     200
 
+/aweme/v1/user/*          /aweme/v1/user   200
+
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
 /aweme/v1/search/item/*       /aweme/v1/search/item/index.html       200
