@@ -1,4 +1,10 @@
 exports.handler = async (event, context) => {
+  const params = event.httpMethod === "GET" 
+    ? event.queryStringParameters || {} 
+    : Object.fromEntries(new URLSearchParams(event.body || ""));
+
+  console.log("--> COMMENT REQUEST PARAMS:", JSON.stringify(params));
+
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -10,7 +16,6 @@ exports.handler = async (event, context) => {
     return { statusCode: 200, headers, body: "" };
   }
 
-  // Return a mock comment payload that satisfies TikTok's list parser
   return {
     statusCode: 200,
     headers,
