@@ -1,10 +1,4 @@
 exports.handler = async (event, context) => {
-  const params = event.httpMethod === "GET" 
-    ? event.queryStringParameters || {} 
-    : Object.fromEntries(new URLSearchParams(event.body || ""));
-
-  console.log("--> COMMENT REQUEST PARAMS:", JSON.stringify(params));
-
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -31,10 +25,10 @@ exports.handler = async (event, context) => {
           user: {
             uid: "735712345678",
             unique_id: "sprinkles.dude",
-            nickname: "sprinkles",
+            nickname: "Sprinkles",
             avatar_thumb: {
               url_list: [
-                "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+                "https://39o.netlify.app/avatar.jpg"
               ]
             }
           }
@@ -42,7 +36,12 @@ exports.handler = async (event, context) => {
       ],
       has_more: 0,
       cursor: 0,
-      total: 1
+      total: 1,
+      upvote_info: {
+        max_position: 0,
+        is_upvote: 0,
+        upvote_comment_id: ""
+      }
     })
   };
 };
