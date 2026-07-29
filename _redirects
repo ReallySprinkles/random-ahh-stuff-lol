@@ -11,6 +11,7 @@
 /aweme/v1/music/list/*         /aweme/v1/music/list/index.html      200
 
 /aweme/v1/user/follower/list/*        /aweme/v1/user/follower/list/index.html      200
+/aweme/v1/user/following/list/*         /aweme/v1/user/following/list/index.html       200
 
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
