@@ -1,3 +1,5 @@
+/aweme/v1/comment/list/*     /aweme/v1/comment/list/index.html     200
+
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
 /aweme/v1/search/item/*       /aweme/v1/search/item/index.html       200
@@ -6,5 +8,3 @@
 /aweme/*                      /aweme/v1/feed/index.html             200
 
 /*                            /.netlify/functions/login             200!
-
-/uploads/finn_the_human_pfp_.jpg            /uploads/finn_the_human_pfp_.jpg
