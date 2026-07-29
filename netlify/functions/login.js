@@ -1,26 +1,27 @@
 exports.handler = async (event, context) => {
-  // Log the exact endpoint, HTTP method, and incoming query parameters
   console.log("--> INCOMING REQUEST PATH:", event.path);
   console.log("--> HTTP METHOD:", event.httpMethod);
-  console.log("--> QUERY PARAMS:", JSON.stringify(event.queryStringParameters));
   
-  if (event.body) {
-    console.log("--> REQUEST BODY:", event.body);
-  }
+  // Grab parameters whether they came via GET query strings or POST body
+  const params = event.httpMethod === "GET" 
+    ? event.queryStringParameters || {} 
+    : Object.fromEntries(new URLSearchParams(event.body || ""));
+
+  console.log("--> PARSED PARAMS:", JSON.stringify(params));
 
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Set-Cookie": "sessionid=mock_session_12345; Path=/; HttpOnly; SameSite=Lax"
+    "Set-Cookie": "sessionid=mock_session_123456789; Path=/; HttpOnly; SameSite=Lax"
   };
 
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 200, headers, body: "" };
   }
 
-  // Payload for TikTok v8.3.1 passport login
+  // TikTok v8.3.1 Passport Success Response Schema
   return {
     statusCode: 200,
     headers,
@@ -28,20 +29,14 @@ exports.handler = async (event, context) => {
       "message": "success",
       "status_code": 0,
       "data": {
-        "description": "",
         "error_code": 0,
         "is_login": 1,
-        "session_key": "mock_session_12345",
-        "user_id": "12345",
-        "uid": "12345",
-        "screen_name": "sprinkles",
+        "session_key": "mock_session_123456789",
+        "user_id": "735712345678",
+        "uid": "735712345678",
+        "screen_name": "Sprinkles",
         "unique_id": "sprinkles.dude",
-        "status": 1,
-        "avatar_thumb": {
-          "url_list": [
-            "https://39o.netlify.app/avatar.jpg"
-          ]
-        }
+        "avatar_url": "https://39o.netlify.app/avatar.jpg"
       }
     })
   };
