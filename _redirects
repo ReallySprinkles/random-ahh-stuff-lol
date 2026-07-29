@@ -7,6 +7,8 @@
 /aweme/v1/notification/count/*           /aweme/v1/notification/count      200
 /aweme/v1/message/unread/count/*        /aweme/v1/message/unread/count    200
 
+/aweme/v1/music/categories/music_list/*        /aweme/v1/music/categories/music_list      200
+
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
 /aweme/v1/search/item/*       /aweme/v1/search/item/index.html       200
