@@ -1,4 +1,5 @@
 /aweme/v1/comment/list/*     /.netlify/functions/comments     200
+/aweme/v2/comment/list/*     /.netlify/functions/comments     200
 
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
