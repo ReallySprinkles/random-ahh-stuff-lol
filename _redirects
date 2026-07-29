@@ -3,12 +3,12 @@
 
 /aweme/v1/user/*          /aweme/v1/user   200
 
-/aweme/v1/notice/count/*            /aweme/v1/notice/count     200
-/aweme/v1/notification/count/*           /aweme/v1/notification/count      200
-/aweme/v1/message/unread/count/*        /aweme/v1/message/unread/count    200
+/aweme/v1/notice/count/*            /aweme/v1/notice/count/index.html     200
+/aweme/v1/notification/count/*           /aweme/v1/notification/count/index.html      200
+/aweme/v1/message/unread/count/*        /aweme/v1/message/unread/count/index.html    200
 
-/aweme/v1/music/categories/music_list/*        /aweme/v1/music/categories/music_list      200
-/aweme/v1/music/list/*         /aweme/v1/music/list      200
+/aweme/v1/music/categories/music_list/*        /aweme/v1/music/categories/music_list/index.html      200
+/aweme/v1/music/list/*         /aweme/v1/music/list/index.html      200
 
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
