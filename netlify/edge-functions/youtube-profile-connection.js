@@ -27,7 +27,7 @@ export default async (req) => {
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA", // Your YT Channel ID
       youtube_channel_title: "sprinkles",      // Displays as connected name
       // --- Instagram Field (if needed) ---
-      ins_id: "imreallysprinkles",
+      ins_id: "iamreallysprinkles",
       // --- Profile Stats ---
       following_count: 2,
       follower_count: 2,
