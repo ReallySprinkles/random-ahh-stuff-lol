@@ -2,37 +2,45 @@ export default async (req) => {
   const url = new URL(req.url);
   const now = Math.floor(Date.now() / 1000);
 
-  // Extract requested tag name from query params (defaults to 'musically' if not found)
   const tagName = url.searchParams.get("ch_name") || url.searchParams.get("cha_name") || "musically";
   const cid = url.searchParams.get("cid") || "12345678";
 
-  // 1. Hashtag Header Info Endpoint (/aweme/v1/challenge/detail/)
+  // Base hashtag object
+  const challengeData = {
+    cid: cid,
+    cha_name: tagName,
+    desc: `Welcome to the official #${tagName} tag page!`,
+    schema: `sslocal://challenge/detail?cid=${cid}`,
+    type: 0,
+    sub_type: 0,
+    view_count: 5400000000,
+    user_count: 890000,
+    is_pgcshow: false,
+    collect_stat: 0,
+    author: {
+      uid: "0",
+      nickname: "",
+      unique_id: ""
+    },
+    share_info: {
+      share_url: `https://www.tiktok.com/tag/${tagName}`,
+      share_title: `#${tagName} on TikTok`,
+      share_desc: `Watch videos about #${tagName}`
+    }
+  };
+
+  // 1. Hashtag Header Info Endpoint
   if (url.pathname.includes("/challenge/detail")) {
     return new Response(
       JSON.stringify({
         status_code: 0,
-        challenge_detail: {
-          cid: cid,
-          cha_name: tagName, // Dynamically sets "#musically"
-          desc: `Welcome to the official #${tagName} tag page! Share your videos and see what's trending.`,
-          schema: `sslocal://challenge/detail?cid=${cid}`,
-          type: 0,
-          sub_type: 0,
-          view_count: 5400000000, // 5.4B views
-          user_count: 890000,     // 890k posts
-          is_pgcshow: false,
-          collect_stat: 0,
-          author: {
-            uid: "0",
-            nickname: "",
-            unique_id: ""
-          },
-          share_info: {
-            share_url: `https://www.tiktok.com/tag/${tagName}`,
-            share_title: `#${tagName} on TikTok`,
-            share_desc: `Watch the latest videos about #${tagName} on TikTok.`
-          }
-        }
+        // Redundancy wrappers for different client build versions:
+        challenge_detail: challengeData,
+        ch_info: challengeData,
+        challenge_info: challengeData,
+        
+        // Some builds bind directly to root fields:
+        ...challengeData
       }),
       {
         status: 200,
@@ -41,7 +49,7 @@ export default async (req) => {
     );
   }
 
-  // 2. Hashtag Video Feed Endpoint (/aweme/v1/challenge/aweme/)
+  // 2. Hashtag Video Feed Endpoint
   if (url.pathname.includes("/challenge/aweme")) {
     return new Response(
       JSON.stringify({
@@ -49,8 +57,6 @@ export default async (req) => {
         min_cursor: 0,
         max_cursor: 0,
         has_more: 0,
-
-        // Populating dummy video objects removes the "Be the first to create a video" empty state
         aweme_list: [
           {
             aweme_id: "7000000000000000001",
