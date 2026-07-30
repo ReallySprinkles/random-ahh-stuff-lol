@@ -1,15 +1,22 @@
-export default async () => {
-  return new Response(
-    JSON.stringify({
-      status_code: 0,
-      has_more: false,
-      conversations: [
-        {
-          conversation_id: "chat_123456789",
-          conversation_type: 1,
-          unread_count: 1,
-          updated_time: Math.floor(Date.now() / 1000),
-          user_info: {
+export default async (request) => {
+  const responseData = {
+    status_code: 0,
+    has_more: 0,
+    cursor: 0,
+    total: 1,
+    // Notification Tab Feed
+    notices: [
+      {
+        nid: "1000001",
+        type: 1,
+        create_time: Math.floor(Date.now() / 1000),
+        comment_notice: {
+          comment: {
+            cid: "9000000000000000001",
+            text: "hi",
+            create_time: Math.floor(Date.now() / 1000)
+          },
+          user: {
             uid: "1234567890",
             nickname: "le user",
             unique_id: "le.user",
@@ -18,54 +25,98 @@ export default async () => {
                 "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/example~c5_168x168.jpeg"
               ]
             }
-          },
-          last_message: {
-            msg_id: "990001",
-            msg_type: 7,
-            content: JSON.stringify({ text: "Hey! Loved your recent video." }),
-            create_time: Math.floor(Date.now() / 1000)
           }
         }
-      ],
-      notice_list: [
-        {
-          nid: "1000001",
-          type: 1,
-          create_time: Math.floor(Date.now() / 1000),
-          comment_notice: {
-            comment: {
-              cid: "9000000000000000001",
-              text: "ok",
-              create_time: Math.floor(Date.now() / 1000)
-            },
-            user: {
-              uid: "1234567890",
-              nickname: "le user",
-              unique_id: "le.user",
-              avatar_thumb: {
-                url_list: [
-                  "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/example~c5_168x168.jpeg"
-                ]
-              }
+      }
+    ],
+    notice_list: [
+      {
+        nid: "1000001",
+        type: 1,
+        create_time: Math.floor(Date.now() / 1000),
+        comment_notice: {
+          comment: {
+            cid: "9000000000000000001",
+            text: "Great video!",
+            create_time: Math.floor(Date.now() / 1000)
+          },
+          user: {
+            uid: "1234567890",
+            nickname: "le user",
+            unique_id: "le.user",
+            avatar_thumb: {
+              url_list: [
+                "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/example~c5_168x168.jpeg"
+              ]
             }
           }
         }
-      ]
-    }),
-    {
-      status: 200,
-      headers: { "Content-Type": "application/json" }
-    }
-  );
+      }
+    ],
+    // Direct Message (DM) Chat List
+    conversations: [
+      {
+        conversation_id: "1:1:1234567890",
+        conversation_type: 1,
+        unread_count: 0,
+        updated_time: Math.floor(Date.now() / 1000),
+        user_info: {
+          uid: "1234567890",
+          nickname: "le user",
+          unique_id: "le.user",
+          avatar_thumb: {
+            url_list: [
+              "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/example~c5_168x168.jpeg"
+            ]
+          }
+        },
+        last_message: {
+          msg_id: "990001",
+          msg_type: 7,
+          content: "{\"text\":\"Hey! Loved your recent video.\"}",
+          create_time: Math.floor(Date.now() / 1000)
+        }
+      }
+    ],
+    conversation_list: [
+      {
+        conversation_id: "1:1:1234567890",
+        conversation_type: 1,
+        unread_count: 0,
+        updated_time: Math.floor(Date.now() / 1000),
+        user_info: {
+          uid: "1234567890",
+          nickname: "le user",
+          unique_id: "le.user",
+          avatar_thumb: {
+            url_list: [
+              "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/example~c5_168x168.jpeg"
+            ]
+          }
+        },
+        last_message: {
+          msg_id: "990001",
+          msg_type: 7,
+          content: "{\"text\":\"Hey! Loved your recent video.\"}",
+          create_time: Math.floor(Date.now() / 1000)
+        }
+      }
+    ]
+  };
+
+  return new Response(JSON.stringify(responseData), {
+    status: 200,
+    headers: { "Content-Type": "application/json" }
+  });
 };
 
 export const config = {
   path: [
-    "/aweme/v1/im/conversation/list/",
-    "/aweme/v1/im/message/list/",
-    "/aweme/v2/im/conversation/list/",
-    "/aweme/v1/notice/list/",
-    "/aweme/v2/notice/list/",
-    "/aweme/v1/message/list/"
+    "/aweme/v1/notice/*",
+    "/aweme/v2/notice/*",
+    "/aweme/v1/im/*",
+    "/aweme/v2/im/*",
+    "/im/*"
   ]
 };
+
