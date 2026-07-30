@@ -12,9 +12,6 @@
 /aweme/v1/user/follower/list/*        /aweme/v1/user/follower/list/index.html      200
 /aweme/v1/user/following/list/*         /aweme/v1/user/following/list/index.html       200
 
-/aweme/v1/notice/list/*         /aweme/v1/notice/list/index.html      200
-/aweme/v1/system/notification/list/*         /aweme/v1/system/notification/list/index.html     200
-
 /aweme/v1/challenge/aweme/*          /aweme/v1/challenge/aweme/index.html      200
 
 /aweme/v1/commit/item/digg/*          /aweme/v1/commit/item/digg/index.html     200
