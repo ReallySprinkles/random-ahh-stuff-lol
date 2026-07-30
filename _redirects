@@ -16,6 +16,8 @@
 /aweme/v1/notice/list/*         /aweme/v1/notice/list/index.html      200
 /aweme/v1/system/notification/list/*         /aweme/v1/system/notification/list/index.html     200
 
+/aweme/v1/challenge/aweme/*          /aweme/v1/challenge/aweme/index.html      200
+
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
 /aweme/v1/search/item/*       /aweme/v1/search/item/index.html       200
