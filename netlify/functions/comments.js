@@ -1,4 +1,10 @@
 exports.handler = async (event, context) => {
+  const params = event.httpMethod === "GET" 
+    ? event.queryStringParameters || {} 
+    : Object.fromEntries(new URLSearchParams(event.body || ""));
+
+  console.log("--> COMMENT REQUEST PARAMS:", JSON.stringify(params));
+
   const headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -15,12 +21,10 @@ exports.handler = async (event, context) => {
     headers,
     body: JSON.stringify({
       status_code: 0,
-      error_code: 0,
       comments: [
         {
           cid: "7350000000000000001",
-          aweme_id: "7350000000000000001",
-          text: "le test",
+          text: "hi",
           create_time: 1700000000,
           digg_count: 13,
           status: 1,
@@ -33,19 +37,12 @@ exports.handler = async (event, context) => {
                 "https://39o.netlify.app/avatar.jpg"
               ]
             }
-          },
-          reply_comment: null,
-          total_reply_count: 0
+          }
         }
       ],
       has_more: 0,
       cursor: 0,
-      total: 1,
-      upvote_info: {
-        max_position: 0,
-        is_upvote: 0,
-        upvote_comment_id: ""
-      }
+      total: 1
     })
   };
 };
