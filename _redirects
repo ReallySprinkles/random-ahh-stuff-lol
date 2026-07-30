@@ -2,7 +2,8 @@
 /aweme/v2/comment/*          /.netlify/functions/comments     200
 /aweme/v1/comment/list/*        /aweme/v1/comment/list/index.html    200
 /aweme/v2/comment/list/*        /aweme/v2/comment/list/index.html    200
-/aweme/v1/comment/publish/*       /aweme/v1/comment/publish/commenting.json   200
+/aweme/v1/comment/publish/*    /aweme/v1/comment/publish/index.json    200   POST
+
 
 /aweme/v1/user/*          /aweme/v1/user   200
 
