@@ -18,8 +18,8 @@ export default async (req) => {
   const userPayload = {
     status_code: 0,
     user: {
-      uid: "12345",
-      short_id: "12345",
+      uid: "7117828228",
+      short_id: "7117828228",
       nickname: "Name",
       unique_id: "Username",
       signature: "Description",
