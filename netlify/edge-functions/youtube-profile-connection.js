@@ -24,10 +24,10 @@ export default async (req) => {
       unique_id: "Username",
       signature: "Description",
       // --- YouTube Connection Fields ---
-      youtube_channel_id: "UCXXXXXXXXXXXXXX", // Your YT Channel ID
+      youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA", // Your YT Channel ID
       youtube_channel_title: "sprinkles",      // Displays as connected name
       // --- Instagram Field (if needed) ---
-      ins_id: "sprinkles.dude",
+      ins_id: "imreallysprinkles",
       // --- Profile Stats ---
       following_count: 2,
       follower_count: 2,
