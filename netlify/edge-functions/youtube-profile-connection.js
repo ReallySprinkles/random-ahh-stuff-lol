@@ -32,7 +32,11 @@ export default async (req) => {
       following_count: 2,
       follower_count: 2,
       total_favorited: 100000,
-      is_self: true
+      is_self: true,
+      aweme_count: 1,
+      favoriting_count: 1
+    
+    
     },
     extra: {
       now: Date.now(),
