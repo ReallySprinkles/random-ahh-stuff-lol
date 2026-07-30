@@ -20,6 +20,10 @@
 
 /aweme/v1/commit/item/digg/*          /aweme/v1/commit/item/digg/index.html     200
 
+/aweme/v1/aweme/collected/challenge/*         /aweme/v1/aweme/collected/challenge/index.html     200
+/aweme/v1/aweme/collected/music/*        /aweme/v1/aweme/collected/music/index.html     200
+/aweme/v1/aweme/favorite/*          /aweme/v1/aweme/favorite/index.html     200
+
 /aweme/v1/category/list/*    /aweme/v1/category/list/index.html    200
 /aweme/v1/discover/banner/*  /aweme/v1/discover/banner/index.html  200
 /aweme/v1/search/item/*       /aweme/v1/search/item/index.html       200
