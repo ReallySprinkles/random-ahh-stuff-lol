@@ -3,6 +3,7 @@
 export default async (req) => {
   const url = new URL(req.url);
 
+  // Global CORS headers required by the client app
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Content-Type, Authorization, X-SS-REQ-TICK",
@@ -10,10 +11,12 @@ export default async (req) => {
     "Content-Type": "application/json; charset=utf-8"
   };
 
+  // Preflight check
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 200, headers });
   }
 
+  // Base track object expected by 7.x sound picker
   const musicWrapper = {
     music_info: {
       id: 7000001,
@@ -49,6 +52,20 @@ export default async (req) => {
     cursor: 0,
     music: [musicWrapper],
     music_list: [musicWrapper],
+    category_list: [
+      {
+        mc_info: {
+          id: 101,
+          name: "Hot Song",
+          icon: {
+            url_list: [
+              "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/89e189f03cef0022a8460c231228f885~tplv-tiktokx-cropcenter:1080:1080.jpeg"
+            ]
+          }
+        },
+        music_list: [musicWrapper]
+      }
+    ],
     mc_list: [
       {
         mc_info: {
@@ -63,6 +80,7 @@ export default async (req) => {
         music_list: [musicWrapper]
       }
     ],
+    banner_list: [],
     extra: {
       now: Date.now(),
       logid: "7x_musically_sound_picker_edge"
@@ -75,6 +93,7 @@ export default async (req) => {
   });
 };
 
+// Redirect / path config directly at the bottom
 export const config = {
   path: [
     "/aweme/v1/music/*",
@@ -83,6 +102,9 @@ export const config = {
     "/aweme/v2/chart/music/*",
     "/aweme/v1/orig/music/*",
     "/aweme/v1/recommend/music/*",
-    "/aweme/v1/music/collection/*"
+    "/aweme/v1/music/collection/*",
+    "/aweme/v1/music/collection/feed/*",
+    "/aweme/v1/category/list/*",
+    "/aweme/v1/music/list/*"
   ]
 };
