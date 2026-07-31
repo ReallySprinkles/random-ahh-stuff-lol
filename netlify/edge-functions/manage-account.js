@@ -14,14 +14,12 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // Handle password modification / phone actions
+  // --- 1. HANDLE PASSWORD SET / CHANGE SUBMISSIONS ---
   if (
-    url.pathname.includes("/mobile") ||
-    url.pathname.includes("/phone") ||
-    url.pathname.includes("/password") ||
-    url.pathname.includes("/unbind") ||
-    url.pathname.includes("/bind") ||
-    url.pathname.includes("/delete")
+    url.pathname.includes("/password/set") ||
+    url.pathname.includes("/password/change") ||
+    url.pathname.includes("/password/reset") ||
+    url.pathname.includes("/passport/password")
   ) {
     return new Response(
       JSON.stringify({
@@ -30,38 +28,43 @@ export default async (req) => {
         message: "success",
         data: {
           is_success: true,
-          description: "Success"
+          captcha: "",
+          description: "Password set successfully"
         }
       }),
       { status: 200, headers }
     );
   }
 
-  // Response for account details & passport checks
+  // --- 2. GENERAL PASSPORT & ACCOUNT BINDING DATA ---
   return new Response(
     JSON.stringify({
       status_code: 0,
       status_msg: "",
       message: "success",
-      
+
+      // Root level properties
       telephone: "+15550192831",
       mobile: "+15550192831",
       phone: "+15550192831",
       bind_phone: "+15550192831",
-      is_phone_bound: true,
+      phone_number: "+15550192831",
+      is_phone_bound: 1,
       has_password: 1,
       can_change_password: 1,
       is_email_verified: 1,
       is_phone_verified: 1,
 
+      // Nested data payload (used by /passport/ user endpoints)
       data: {
         user_id: "7117828228",
         telephone: "+15550192831",
         mobile: "+15550192831",
         phone: "+15550192831",
         bind_phone: "+15550192831",
+        phone_number: "+15550192831",
         email: "user***@gmail.com",
-        is_phone_bound: true,
+        is_phone_bound: 1,
         has_password: 1,
         can_change_password: 1,
         is_email_verified: 1,
@@ -72,7 +75,9 @@ export default async (req) => {
         uid: "7117828228",
         telephone: "+15550192831",
         mobile: "+15550192831",
+        phone: "+15550192831",
         bind_phone: "+15550192831",
+        phone_number: "+15550192831",
         has_password: 1
       }
     }),
@@ -96,6 +101,8 @@ export const config = {
     "/passport/account/info/*",
     "/passport/user/info",
     "/passport/account/info",
+    "/passport/password/*",
+    "/passport/password",
     "/aweme/v1/user/mobile/*",
     "/aweme/v1/user/bind/*",
     "/passport/*"
