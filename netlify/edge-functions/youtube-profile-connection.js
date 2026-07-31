@@ -18,7 +18,7 @@ export default async (req) => {
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
   // --- 1. PRIVACY & SETTINGS TOGGLES ---
-  // Intercepts toggling "Private Account", "Allow Others to Find Me", and all sub-settings updates
+  // Catches Private Account, Allow Others to Find Me, and sub-setting changes
   if (
     url.pathname.includes("/user/settings") ||
     url.pathname.includes("/user/set") ||
@@ -30,7 +30,7 @@ export default async (req) => {
     return new Response(
       JSON.stringify({
         status_code: 0,
-        status_msg: "success",
+        status_msg: "",
         is_private: 1,
         is_secret: 1,
         secret: 1,
@@ -40,9 +40,12 @@ export default async (req) => {
         find_by_contacts: 1,
         find_by_phone: 1,
         settings: {
+          status_code: 0,
           allow_others_to_find_me: 1,
           allow_find_by_contacts: 1,
-          allow_special_find: 1
+          allow_special_find: 1,
+          is_private: 1,
+          secret: 1
         }
       }),
       { status: 200, headers }
@@ -89,7 +92,7 @@ export default async (req) => {
       unique_id: "Username",
       signature: "Description",
       secret: 0,
-      is_private: false,
+      is_private: 0,
       allow_others_to_find_me: 1,
       allow_find_by_contacts: 1,
       allow_special_find: 1,
