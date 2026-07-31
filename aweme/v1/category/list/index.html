@@ -3,7 +3,7 @@
 export default async (req) => {
   const headers = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-SS-REQ-TICK",
+    "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Content-Type": "application/json; charset=utf-8"
   };
@@ -12,147 +12,66 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // Base raw categories array
   const rawCategories = [
-    {
-      category_type: 0,
-      desc: "hi",
-      challenge_info: {
-        cid: "1001",
-        cha_name: "musically",
-        user_count: 1337,
-        desc: "hi"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "welcome to le #foryou brother",
-      challenge_info: {
-        cid: "1002",
-        cha_name: "foryou",
-        user_count: 2500,
-        desc: "welcome to le #foryou brother"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "going viral",
-      challenge_info: {
-        cid: "1003",
-        cha_name: "viral",
-        user_count: 4200,
-        desc: "blow this up"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "main feed",
-      challenge_info: {
-        cid: "1004",
-        cha_name: "fyp",
-        user_count: 8900,
-        desc: "straight to your page"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "duet time",
-      challenge_info: {
-        cid: "1005",
-        cha_name: "duet",
-        user_count: 5100,
-        desc: "duet with me"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "hit the dance",
-      challenge_info: {
-        cid: "1006",
-        cha_name: "dancechallenge",
-        user_count: 12000,
-        desc: "show your moves"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "funny moments",
-      challenge_info: {
-        cid: "1007",
-        cha_name: "comedy",
-        user_count: 3400,
-        desc: "try not to laugh"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "lip sync battle",
-      challenge_info: {
-        cid: "1008",
-        cha_name: "lipsync",
-        user_count: 6700,
-        desc: "sing it loud"
-      }
-    },
-    {
-      category_type: 0,
-      desc: "throwback",
-      challenge_info: {
-        cid: "1009",
-        cha_name: "nostalgia",
-        user_count: 9999,
-        desc: "bringing back the classics"
-      }
-    }
+    { cid: "1001", name: "musically", desc: "hi", count: 1337 },
+    { cid: "1002", name: "foryou", desc: "welcome to le #foryou brother", count: 2500 },
+    { cid: "1003", name: "viral", desc: "going viral", count: 4200 },
+    { cid: "1004", name: "fyp", desc: "main feed", count: 8900 },
+    { cid: "1005", name: "duet", desc: "duet time", count: 5100 },
+    { cid: "1006", name: "dancechallenge", desc: "hit the dance", count: 12000 },
+    { cid: "1007", name: "comedy", desc: "funny moments", count: 3400 },
+    { cid: "1008", name: "lipsync", desc: "lip sync battle", count: 6700 },
+    { cid: "1009", name: "nostalgia", desc: "throwback", count: 9999 }
   ];
 
-  // Helper to generate 10 video items for a given hashtag
+  // Builds 3 lightweight video cards per hashtag
   const buildVideos = (tagCid, tagName) => {
-    return Array.from({ length: 10 }, (_, i) => {
-      const vidNum = i + 1;
-      return {
-        aweme_id: `${tagCid}00${vidNum}`,
-        desc: `#${tagName} video ${vidNum}`,
-        video: {
-          play_addr: {
-            url_list: [
-              `https://valoria-social.com/videos/${tagName}_${vidNum}.mp4`
-            ]
-          },
-          cover: {
-            url_list: [
-              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-            ]
-          },
-          origin_cover: {
-            url_list: [
-              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-            ]
-          },
-          height: 720,
-          width: 720
+    return [1, 2, 3].map((num) => ({
+      aweme_id: `${tagCid}0${num}`,
+      desc: `#${tagName} video ${num}`,
+      video: {
+        play_addr: {
+          url_list: [`https://valoria-social.com/videos/${tagName}_${num}.mp4`]
         },
-        author: {
-          uid: `800${vidNum}`,
-          nickname: `User ${vidNum}`,
-          avatar_thumb: {
-            url_list: [
-              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-            ]
-          }
+        cover: {
+          url_list: [
+            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+          ]
         },
-        statistics: {
-          digg_count: 100 * vidNum,
-          comment_count: 10 * vidNum
+        origin_cover: {
+          url_list: [
+            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+          ]
+        },
+        height: 720,
+        width: 720
+      },
+      author: {
+        uid: `80${num}`,
+        nickname: `User ${num}`,
+        avatar_thumb: {
+          url_list: [
+            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+          ]
         }
-      };
-    });
+      },
+      statistics: {
+        digg_count: 100 * num,
+        comment_count: 10 * num
+      }
+    }));
   };
 
-  // Attach 10 generated videos to every category entry
-  const category_list = rawCategories.map((cat) => ({
-    ...cat,
-    aweme_list: buildVideos(cat.challenge_info.cid, cat.challenge_info.cha_name)
+  const category_list = rawCategories.map((item) => ({
+    category_type: 0,
+    desc: item.desc,
+    challenge_info: {
+      cid: item.cid,
+      cha_name: item.name,
+      user_count: item.count,
+      desc: item.desc
+    },
+    aweme_list: buildVideos(item.cid, item.name)
   }));
 
   const payload = {
@@ -166,7 +85,7 @@ export default async (req) => {
       { word: "dancechallenge", type: 0 },
       { word: "comedy", type: 0 }
     ],
-    category_list,
+    category_list: category_list,
     banner_list: [
       {
         bid: "101",
@@ -189,7 +108,6 @@ export default async (req) => {
 export const config = {
   path: [
     "/aweme/v1/category/list/*",
-    "/aweme/v1/category/list",
-    "/aweme/v1/find/*"
+    "/aweme/v1/category/list"
   ]
 };
