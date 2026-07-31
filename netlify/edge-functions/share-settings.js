@@ -21,6 +21,8 @@ export default async (req) => {
     JSON.stringify({
       status_code: 0,
       status_msg: "",
+      
+      // Mandatory share payload details
       share_info: {
         share_url: profileUrl,
         share_weibo_desc: "Check out my profile!",
@@ -37,8 +39,18 @@ export default async (req) => {
         }
       },
       share_url: profileUrl,
+      
+      // Explicitly enable available share options/channels for the UI sheet
+      share_channels: [
+        { channel_name: "copy", label: "Copy Link" },
+        { channel_name: "qr_code", label: "QR Code" },
+        { channel_name: "instagram", label: "Instagram" }
+      ],
+
       user_share_info: {
-        share_url: profileUrl
+        share_url: profileUrl,
+        share_title: "Share Profile",
+        share_desc: "Check out my profile!"
       }
     }),
     { status: 200, headers }
@@ -56,6 +68,10 @@ export const config = {
     "/aweme/v1/user/share/*",
     "/aweme/v1/user/share",
     "/aweme/v1/share/user/*",
-    "/aweme/v1/share/info/*"
+    "/aweme/v1/share/user",
+    "/aweme/v1/share/info/*",
+    "/aweme/v1/share/info",
+    "/aweme/v1/share/options/*",
+    "/aweme/v1/share/options"
   ]
 };
