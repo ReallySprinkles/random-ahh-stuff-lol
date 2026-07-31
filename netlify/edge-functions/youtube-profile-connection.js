@@ -165,7 +165,6 @@ export const config = {
     "/aweme/v1/create/aweme/*",
     "/aweme/v1/aweme/create/*",
     "/aweme/v1/commit/aweme/*",
-    "/aweme/v1/post/aweme/*",
     "/aweme/v1/aweme/post/*",
     "/aweme/v1/enc/video/*"
   ]
