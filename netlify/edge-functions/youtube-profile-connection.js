@@ -20,12 +20,11 @@ export default async (req) => {
   // --- 1. PRIVACY & SETTINGS TOGGLES ---
   // Catches Private Account, Allow Others to Find Me, and all privacy switches
   if (
-    url.pathname.includes("/user/settings") ||
-    url.pathname.includes("/user/set") ||
-    url.pathname.includes("/set/settings") ||
-    url.pathname.includes("/settings/set") ||
-    url.pathname.includes("/privacy/") ||
-    url.pathname.includes("/commit/user")
+    url.pathname.includes("/settings") ||
+    url.pathname.includes("/privacy") ||
+    url.pathname.includes("/commit") ||
+    url.pathname.includes("/modify") ||
+    url.pathname.includes("/set")
   ) {
     return new Response(
       JSON.stringify({
@@ -60,22 +59,7 @@ export default async (req) => {
     );
   }
 
-  // --- 2. GLOBAL SETTINGS ENDPOINT CHECK ---
-  if (url.pathname.includes("/settings/")) {
-    return new Response(
-      JSON.stringify({
-        status_code: 0,
-        settings: {
-          enable_qrcode: 1,
-          share_url_white_list: ["*"],
-          enable_music_picker: 1
-        }
-      }),
-      { status: 200, headers }
-    );
-  }
-
-  // --- 3. DEDICATED QR CODE ENDPOINTS ---
+  // --- 2. DEDICATED QR CODE ENDPOINTS ---
   if (url.pathname.includes("/qrcode")) {
     return new Response(
       JSON.stringify({
@@ -90,7 +74,7 @@ export default async (req) => {
     );
   }
 
-  // --- 4. PROFILE & USER PAYLOAD ---
+  // --- 3. PROFILE & USER PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
@@ -141,11 +125,18 @@ export const config = {
     "/aweme/v1/user",
     "/aweme/v1/user/detail/*",
     "/aweme/v1/user/settings/*",
+    "/aweme/v1/user/settings",
     "/aweme/v1/user/set/settings/*",
+    "/aweme/v1/user/set/settings",
     "/aweme/v1/user/settings/set/*",
+    "/aweme/v1/user/settings/set",
     "/aweme/v1/user/set/*",
+    "/aweme/v1/user/set",
     "/aweme/v1/user/settings/find/*",
     "/aweme/v1/user/privacy/*",
+    "/aweme/v1/user/privacy",
+    "/aweme/v1/user/modify/*",
+    "/aweme/v1/user/modify",
     "/aweme/v1/commit/user/*",
     "/aweme/v1/commit/user/set/*",
     "/aweme/v1/privacy/settings/*",
