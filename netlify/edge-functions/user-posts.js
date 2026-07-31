@@ -15,6 +15,9 @@ export default async (req) => {
   // --- RAW GITHUB PFP LINK ---
   const myPfpUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
 
+  // --- VIDEO 1 DIRECT MP4 URL ---
+  const firstVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d6hlbr7og65klb5r0ti0.mp4";
+
   // --- AUTHOR OBJECT ---
   const authorData = {
     uid: "7117828228",
@@ -50,7 +53,7 @@ export default async (req) => {
     owner_handle: "sprinkles.dude"
   };
 
-  // --- FEED DATA WITH INLINE STATUS OBJECT FOR EVERY VIDEO ---
+  // --- FEED DATA WITH CUSTOM MP4 ON FIRST VIDEO ---
   const feedPayload = {
     status_code: 0,
     has_more: 0,
@@ -83,7 +86,27 @@ export default async (req) => {
           share_title: "55 people I love you only ahh song 🥀"
         },
         statistics: { play_count: 2100000, digg_count: 157500, comment_count: 2235, collect_count: 30600, share_count: 1240 },
-        video: { cover: { url_list: ["https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d6hlbr7og65klb5r0ti0.mp4"] } }
+        video: {
+          play_addr: {
+            uri: "v1c044g50000d6hlbr7og65klb5r0ti0",
+            url_list: [firstVideoMp4]
+          },
+          play_addr_h264: {
+            uri: "v1c044g50000d6hlbr7og65klb5r0ti0",
+            url_list: [firstVideoMp4]
+          },
+          download_addr: {
+            uri: "v1c044g50000d6hlbr7og65klb5r0ti0",
+            url_list: [firstVideoMp4]
+          },
+          cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] },
+          dynamic_cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] },
+          origin_cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] },
+          width: 1080,
+          height: 1920,
+          ratio: "720p",
+          duration: 15000
+        }
       },
       {
         aweme_id: "7100000000000000002",
