@@ -14,26 +14,64 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // --- 1. ACCOUNT VERIFICATION & PHONE / EMAIL INFO ---
+  // --- 1. PHONE BINDING & PASSPORT VERIFICATION ACTIONS ---
+  if (
+    url.pathname.includes("/mobile") ||
+    url.pathname.includes("/phone") ||
+    url.pathname.includes("/password") ||
+    url.pathname.includes("/unbind") ||
+    url.pathname.includes("/bind") ||
+    url.pathname.includes("/delete")
+  ) {
+    return new Response(
+      JSON.stringify({
+        status_code: 0,
+        status_msg: "",
+        message: "success",
+        data: {
+          is_success: true,
+          captcha: ""
+        }
+      }),
+      { status: 200, headers }
+    );
+  }
+
+  // --- 2. MANAGE ACCOUNT MAIN DATA PAYLOAD ---
   return new Response(
     JSON.stringify({
       status_code: 0,
       status_msg: "",
-      data: {
-        email: "user***@gmail.com",
-        mobile: "+1 (***) ***-1234",
-        is_email_verified: 1,
-        is_phone_verified: 1,
-        has_password: 1,
-        can_change_password: 1,
-        user_id: "7117828228"
-      },
-      // Root fallback for older client versions
-      email: "user***@gmail.com",
-      mobile: "+1 (***) ***-1234",
+      
+      // Phone flags to satisfy the client requirement
+      telephone: "+1 (555) 019-2831",
+      mobile: "+1 (555) 019-2831",
+      phone: "+1 (555) 019-2831",
+      is_phone_bound: true,
+      has_password: 1,
+      can_change_password: 1,
       is_email_verified: 1,
       is_phone_verified: 1,
-      has_password: 1
+
+      data: {
+        user_id: "7117828228",
+        telephone: "+1 (555) 019-2831",
+        mobile: "+1 (555) 019-2831",
+        phone: "+1 (555) 019-2831",
+        email: "user***@gmail.com",
+        is_phone_bound: true,
+        has_password: 1,
+        can_change_password: 1,
+        is_email_verified: 1,
+        is_phone_verified: 1
+      },
+
+      user: {
+        uid: "7117828228",
+        telephone: "+1 (555) 019-2831",
+        mobile: "+1 (555) 019-2831",
+        has_password: 1
+      }
     }),
     { status: 200, headers }
   );
@@ -49,6 +87,10 @@ export const config = {
     "/aweme/v1/account/info",
     "/aweme/v1/account/settings/*",
     "/aweme/v1/account/settings",
-    "/aweme/v1/passport/account/info/*"
+    "/aweme/v1/passport/*",
+    "/aweme/v1/passport/account/info/*",
+    "/aweme/v1/user/mobile/*",
+    "/aweme/v1/user/bind/*",
+    "/passport/*"
   ]
 };
