@@ -14,7 +14,25 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // User details payload including social link metadata
+  // Generate dynamic QR code image via free API pointing to the user profile link
+  const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
+  const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
+
+  // Dedicated handler if app specifically calls the qrcode endpoint
+  if (url.pathname.includes("/qrcode/")) {
+    return new Response(
+      JSON.stringify({
+        status_code: 0,
+        qrcode_url: {
+          uri: "qrcode/7117828228.png",
+          url_list: [qrImageUrl]
+        }
+      }),
+      { status: 200, headers }
+    );
+  }
+
+  // User details payload including social link metadata & embedded QR code
   const userPayload = {
     status_code: 0,
     user: {
@@ -23,19 +41,26 @@ export default async (req) => {
       nickname: "Name",
       unique_id: "Username",
       signature: "Description",
+
+      // --- QR Code payload object ---
+      qrcode_url: {
+        uri: "qrcode/7117828228.png",
+        url_list: [qrImageUrl]
+      },
+
       // --- YouTube Connection Fields ---
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA", // Your YT Channel ID
       youtube_channel_title: "sprinkles",      // Displays as connected name
-      // --- Instagram Field (if needed) ---
+
+      // --- Instagram Field ---
       ins_id: "iamreallysprinkles",
+
       // --- Profile Stats ---
       following_count: 2,
       follower_count: 2,
       total_favorited: 100000,
       aweme_count: 1,
       favoriting_count: 1
-    
-    
     },
     extra: {
       now: Date.now(),
@@ -54,6 +79,8 @@ export const config = {
     "/aweme/v1/user/profile/self/*",
     "/aweme/v1/user",
     "/aweme/v1/user/detail/*",
-    "/aweme/v1/social/bind/*"
+    "/aweme/v1/social/bind/*",
+    "/aweme/v1/qrcode/*",
+    "/aweme/v1/qrcode/find/*"
   ]
 };
