@@ -17,6 +17,7 @@ export default async (req) => {
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
+  // --- 1. DEDICATED QR CODE ENDPOINTS ---
   if (url.pathname.includes("/qrcode")) {
     return new Response(
       JSON.stringify({
@@ -31,19 +32,20 @@ export default async (req) => {
     );
   }
 
+  // --- 2. PROFILE & USER PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
       uid: "7117828228",
       short_id: "7117828228",
-      nickname: "Name",
-      unique_id: "Username",
-      signature: "Description",
+      nickname: "sprinkles",
+      unique_id: "sprinkles.dude",
+      signature: "I'm really sprinkles 🤯\nEgyptian 🇪🇬\n(NOT A TECHTOKER!)\nDiscord username: reallysprinkles\nDISCORD SERVER HERE 👇\nhttps://discord.gg/Ta8ZtP4sCf",
       secret: 0,
       is_private: 0,
       allow_others_to_find_me: 1,
 
-      // --- PHONE & ACCOUNT BINDING FLAGS (Fixes "Please add a phone number first") ---
+      // --- PHONE & ACCOUNT BINDING FLAGS ---
       telephone: "+15550192831",
       phone: "+15550192831",
       mobile: "+15550192831",
@@ -52,18 +54,41 @@ export default async (req) => {
       has_password: true,
       has_email: true,
 
+      // --- AVATAR URLS ---
+      avatar_thumb: {
+        uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
+        url_list: [
+          "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+        ]
+      },
+      avatar_medium: {
+        uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
+        url_list: [
+          "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_300x300.jpeg"
+        ]
+      },
+      avatar_larger: {
+        uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
+        url_list: [
+          "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_720x720.jpeg"
+        ]
+      },
+
+      // --- QR CODE ---
       qrcode_url: {
         uri: "qrcode/7117828228.png",
         url_list: [qrImageUrl]
       },
 
+      // --- SOCIAL LINKS ---
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA",
       youtube_channel_title: "sprinkles",
       ins_id: "iamreallysprinkles",
 
-      following_count: 2,
-      follower_count: 2,
-      total_favorited: 100000,
+      // --- METRICS ---
+      following_count: 1188,
+      follower_count: 4516,
+      total_favorited: 358500,
       aweme_count: 1,
       favoriting_count: 1
     },
