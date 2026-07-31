@@ -27,6 +27,10 @@ export default async (req) => {
   const thirdVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d6pu2dvog65inipsr2q0.mp4";
   const thirdVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3815.png";
 
+  // Video 4 Assets
+  const fourthVideoMov = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/export_1785523913445.mov";
+  const fourthVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3818.png";
+
   // --- AUTHOR OBJECT ---
   const authorData = {
     uid: "7117828228",
@@ -235,7 +239,27 @@ export default async (req) => {
         share_url: "https://vm.tiktok.com/ZM8123459/",
         share_info: { share_url: "https://vm.tiktok.com/ZM8123459/", share_title: "#CapCut" },
         statistics: { play_count: 216, digg_count: 10, comment_count: 3, collect_count: 2, share_count: 0 },
-        video: { cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604681"] } }
+        video: {
+          play_addr: {
+            uri: "export_1785523913445",
+            url_list: [fourthVideoMov]
+          },
+          play_addr_h264: {
+            uri: "export_1785523913445",
+            url_list: [fourthVideoMov]
+          },
+          download_addr: {
+            uri: "export_1785523913445",
+            url_list: [fourthVideoMov]
+          },
+          cover: { url_list: [fourthVideoCover] },
+          dynamic_cover: { url_list: [fourthVideoCover] },
+          origin_cover: { url_list: [fourthVideoCover] },
+          width: 1080,
+          height: 1920,
+          ratio: "720p",
+          duration: 15000
+        }
       },
       {
         aweme_id: "7100000000000000005",
