@@ -12,11 +12,10 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // --- RAW GITHUB PFP LINK ---
+  // --- RAW GITHUB ASSETS ---
   const myPfpUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
-
-  // --- VIDEO 1 DIRECT MP4 URL ---
   const firstVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d6hlbr7og65klb5r0ti0.mp4";
+  const firstVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3810.png";
 
   // --- AUTHOR OBJECT ---
   const authorData = {
@@ -53,7 +52,7 @@ export default async (req) => {
     owner_handle: "sprinkles.dude"
   };
 
-  // --- FEED DATA WITH CUSTOM MP4 ON FIRST VIDEO ---
+  // --- FEED DATA ---
   const feedPayload = {
     status_code: 0,
     has_more: 0,
@@ -99,9 +98,9 @@ export default async (req) => {
             uri: "v1c044g50000d6hlbr7og65klb5r0ti0",
             url_list: [firstVideoMp4]
           },
-          cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] },
-          dynamic_cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] },
-          origin_cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] },
+          cover: { url_list: [firstVideoCover] },
+          dynamic_cover: { url_list: [firstVideoCover] },
+          origin_cover: { url_list: [firstVideoCover] },
           width: 1080,
           height: 1920,
           ratio: "720p",
