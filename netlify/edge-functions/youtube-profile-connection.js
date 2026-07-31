@@ -89,8 +89,8 @@ export default async (req) => {
       following_count: 1188,
       follower_count: 4516,
       total_favorited: 358500,
-      aweme_count: 1,
-      favoriting_count: 1
+      aweme_count: 398,
+      favoriting_count: 1123
     },
     extra: {
       now: Date.now(),
