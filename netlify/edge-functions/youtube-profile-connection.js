@@ -155,7 +155,6 @@ export const config = {
   path: [
     "/aweme/v1/user/profile/self/*",
     "/aweme/v1/user",
-    "/aweme/v1/user/*",
     "/aweme/v1/user/detail/*",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
