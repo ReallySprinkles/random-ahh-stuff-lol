@@ -1,109 +1,195 @@
-{
-  "status_code": 0,
-  "category_list": [
+// netlify/edge-functions/discover.js
+
+export default async (req) => {
+  const headers = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-SS-REQ-TICK",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Content-Type": "application/json; charset=utf-8"
+  };
+
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 200, headers });
+  }
+
+  // Base raw categories array
+  const rawCategories = [
     {
-      "category_type": 0,
-      "desc": "hi",
-      "challenge_info": {
-        "cid": "1001",
-        "cha_name": "musically",
-        "user_count": 1337,
-        "desc": "hi"
+      category_type: 0,
+      desc: "hi",
+      challenge_info: {
+        cid: "1001",
+        cha_name: "musically",
+        user_count: 1337,
+        desc: "hi"
       }
     },
     {
-      "category_type": 0,
-      "desc": "welcome to le #foryou brother",
-      "challenge_info": {
-        "cid": "1002",
-        "cha_name": "foryou",
-        "user_count": 2500,
-        "desc": "welcome to le #foryou brother"
+      category_type: 0,
+      desc: "welcome to le #foryou brother",
+      challenge_info: {
+        cid: "1002",
+        cha_name: "foryou",
+        user_count: 2500,
+        desc: "welcome to le #foryou brother"
       }
     },
     {
-      "category_type": 0,
-      "desc": "going viral",
-      "challenge_info": {
-        "cid": "1003",
-        "cha_name": "viral",
-        "user_count": 4200,
-        "desc": "blow this up"
+      category_type: 0,
+      desc: "going viral",
+      challenge_info: {
+        cid: "1003",
+        cha_name: "viral",
+        user_count: 4200,
+        desc: "blow this up"
       }
     },
     {
-      "category_type": 0,
-      "desc": "main feed",
-      "challenge_info": {
-        "cid": "1004",
-        "cha_name": "fyp",
-        "user_count": 8900,
-        "desc": "straight to your page"
+      category_type: 0,
+      desc: "main feed",
+      challenge_info: {
+        cid: "1004",
+        cha_name: "fyp",
+        user_count: 8900,
+        desc: "straight to your page"
       }
     },
     {
-      "category_type": 0,
-      "desc": "duet time",
-      "challenge_info": {
-        "cid": "1005",
-        "cha_name": "duet",
-        "user_count": 5100,
-        "desc": "duet with me"
+      category_type: 0,
+      desc: "duet time",
+      challenge_info: {
+        cid: "1005",
+        cha_name: "duet",
+        user_count: 5100,
+        desc: "duet with me"
       }
     },
     {
-      "category_type": 0,
-      "desc": "hit the dance",
-      "challenge_info": {
-        "cid": "1006",
-        "cha_name": "dancechallenge",
-        "user_count": 12000,
-        "desc": "show your moves"
+      category_type: 0,
+      desc: "hit the dance",
+      challenge_info: {
+        cid: "1006",
+        cha_name: "dancechallenge",
+        user_count: 12000,
+        desc: "show your moves"
       }
     },
     {
-      "category_type": 0,
-      "desc": "funny moments",
-      "challenge_info": {
-        "cid": "1007",
-        "cha_name": "comedy",
-        "user_count": 3400,
-        "desc": "try not to laugh"
+      category_type: 0,
+      desc: "funny moments",
+      challenge_info: {
+        cid: "1007",
+        cha_name: "comedy",
+        user_count: 3400,
+        desc: "try not to laugh"
       }
     },
     {
-      "category_type": 0,
-      "desc": "lip sync battle",
-      "challenge_info": {
-        "cid": "1008",
-        "cha_name": "lipsync",
-        "user_count": 6700,
-        "desc": "sing it loud"
+      category_type: 0,
+      desc: "lip sync battle",
+      challenge_info: {
+        cid: "1008",
+        cha_name: "lipsync",
+        user_count: 6700,
+        desc: "sing it loud"
       }
     },
     {
-      "category_type": 0,
-      "desc": "throwback",
-      "challenge_info": {
-        "cid": "1009",
-        "cha_name": "nostalgia",
-        "user_count": 9999,
-        "desc": "bringing back the classics"
+      category_type: 0,
+      desc: "throwback",
+      challenge_info: {
+        cid: "1009",
+        cha_name: "nostalgia",
+        user_count: 9999,
+        desc: "bringing back the classics"
       }
     }
-  ],
-  "banner_list": [
-    {
-      "bid": "101",
-      "title": "the",
-      "schema": "sslocal://webview?url=https://39o.netlify.app",
-      "banner_url": {
-        "url_list": [
-          "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-        ]
+  ];
+
+  // Helper to generate 10 video items for a given hashtag
+  const buildVideos = (tagCid, tagName) => {
+    return Array.from({ length: 10 }, (_, i) => {
+      const vidNum = i + 1;
+      return {
+        aweme_id: `${tagCid}00${vidNum}`,
+        desc: `#${tagName} video ${vidNum}`,
+        video: {
+          play_addr: {
+            url_list: [
+              `https://valoria-social.com/videos/${tagName}_${vidNum}.mp4`
+            ]
+          },
+          cover: {
+            url_list: [
+              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+            ]
+          },
+          origin_cover: {
+            url_list: [
+              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+            ]
+          },
+          height: 720,
+          width: 720
+        },
+        author: {
+          uid: `800${vidNum}`,
+          nickname: `User ${vidNum}`,
+          avatar_thumb: {
+            url_list: [
+              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+            ]
+          }
+        },
+        statistics: {
+          digg_count: 100 * vidNum,
+          comment_count: 10 * vidNum
+        }
+      };
+    });
+  };
+
+  // Attach 10 generated videos to every category entry
+  const category_list = rawCategories.map((cat) => ({
+    ...cat,
+    aweme_list: buildVideos(cat.challenge_info.cid, cat.challenge_info.cha_name)
+  }));
+
+  const payload = {
+    status_code: 0,
+    status_msg: "",
+    word_list: [
+      { word: "musically", type: 0 },
+      { word: "foryou", type: 1 },
+      { word: "viral", type: 0 },
+      { word: "fyp", type: 0 },
+      { word: "dancechallenge", type: 0 },
+      { word: "comedy", type: 0 }
+    ],
+    category_list,
+    banner_list: [
+      {
+        bid: "101",
+        title: "the",
+        schema: "sslocal://webview?url=https://39o.netlify.app",
+        banner_url: {
+          url_list: [
+            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
+          ]
+        }
       }
-    }
-  ],
-  "has_more": 0,
-  "cursor": 0
-}
+    ],
+    has_more: 0,
+    cursor: 0
+  };
+
+  return new Response(JSON.stringify(payload), { status: 200, headers });
+};
+
+export const config = {
+  path: [
+    "/aweme/v1/category/list/*",
+    "/aweme/v1/category/list",
+    "/aweme/v1/find/*"
+  ]
+};
