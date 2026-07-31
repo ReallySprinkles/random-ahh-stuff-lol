@@ -83,7 +83,7 @@ export default async (req) => {
           share_title: "55 people I love you only ahh song 🥀"
         },
         statistics: { play_count: 2100000, digg_count: 157500, comment_count: 2235, collect_count: 30600, share_count: 1240 },
-        video: { cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604678"] } }
+        video: { cover: { url_list: ["https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d6hlbr7og65klb5r0ti0.mp4"] } }
       },
       {
         aweme_id: "7100000000000000002",
