@@ -17,25 +17,27 @@ export default async (req) => {
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
-  // --- 1. PRIVACY & USER SETTINGS TOGGLE ---
+  // --- 1. PRIVACY & SETTINGS TOGGLES ---
+  // Intercepts toggling "Private Account" or "Allow Others to Find Me"
   if (
-    url.pathname.includes("/user/settings/") ||
-    url.pathname.includes("/user/set/settings/") ||
-    url.pathname.includes("/privacy/settings/")
+    url.pathname.includes("/user/settings") ||
+    url.pathname.includes("/set/settings") ||
+    url.pathname.includes("/privacy/settings") ||
+    url.pathname.includes("/commit/user")
   ) {
     return new Response(
       JSON.stringify({
         status_code: 0,
         status_msg: "success",
         is_private: 1,
+        is_secret: 1,
         secret: 1
       }),
       { status: 200, headers }
     );
   }
 
-  // --- 2. SETTINGS ENDPOINT CHECK ---
-  // The app checks settings before loading QR features.
+  // --- 2. GLOBAL SETTINGS ENDPOINT CHECK ---
   if (url.pathname.includes("/settings/")) {
     return new Response(
       JSON.stringify({
@@ -75,6 +77,7 @@ export default async (req) => {
       unique_id: "Username",
       signature: "Description",
       secret: 0,
+      is_private: false,
 
       // --- Embedded QR Code Object ---
       qrcode_url: {
@@ -113,6 +116,7 @@ export const config = {
     "/aweme/v1/user/detail/*",
     "/aweme/v1/user/settings/*",
     "/aweme/v1/user/set/settings/*",
+    "/aweme/v1/commit/user/*",
     "/aweme/v1/privacy/settings/*",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
