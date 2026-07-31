@@ -23,8 +23,8 @@ export default async (req) => {
         block_list: [
           {
             uid: "9999999999",
-            nickname: "Blocked Account",
-            unique_id: "blocked_user",
+            nickname: "le user",
+            unique_id: "le.user",
             avatar_thumb: {
               url_list: [
                 "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
