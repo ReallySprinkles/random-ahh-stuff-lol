@@ -18,13 +18,13 @@ export default async (req) => {
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
   // --- 1. PRIVACY & SETTINGS TOGGLES ---
-  // Catches Private Account, Allow Others to Find Me, and sub-setting changes
+  // Catches Private Account, Allow Others to Find Me, and all privacy switches
   if (
     url.pathname.includes("/user/settings") ||
     url.pathname.includes("/user/set") ||
     url.pathname.includes("/set/settings") ||
     url.pathname.includes("/settings/set") ||
-    url.pathname.includes("/privacy/settings") ||
+    url.pathname.includes("/privacy/") ||
     url.pathname.includes("/commit/user")
   ) {
     return new Response(
@@ -39,6 +39,14 @@ export default async (req) => {
         allow_special_find: 1,
         find_by_contacts: 1,
         find_by_phone: 1,
+        user: {
+          uid: "7117828228",
+          secret: 0,
+          is_private: 0,
+          allow_others_to_find_me: 1,
+          allow_find_by_contacts: 1,
+          allow_special_find: 1
+        },
         settings: {
           status_code: 0,
           allow_others_to_find_me: 1,
@@ -137,8 +145,11 @@ export const config = {
     "/aweme/v1/user/settings/set/*",
     "/aweme/v1/user/set/*",
     "/aweme/v1/user/settings/find/*",
+    "/aweme/v1/user/privacy/*",
     "/aweme/v1/commit/user/*",
+    "/aweme/v1/commit/user/set/*",
     "/aweme/v1/privacy/settings/*",
+    "/aweme/v1/privacy/*",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
     "/aweme/v1/user/qrcode/*",
