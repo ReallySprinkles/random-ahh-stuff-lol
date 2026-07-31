@@ -14,8 +14,14 @@ export default async (req) => {
 
   // --- RAW GITHUB ASSETS ---
   const myPfpUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
+  
+  // Video 1 Assets
   const firstVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d6hlbr7og65klb5r0ti0.mp4";
   const firstVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3810.png";
+
+  // Video 2 Assets
+  const secondVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d61421fog65kcof3lhdg.mp4";
+  const secondVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3813.png";
 
   // --- AUTHOR OBJECT ---
   const authorData = {
@@ -133,7 +139,27 @@ export default async (req) => {
           share_title: "Ain't no way 😭✌️"
         },
         statistics: { play_count: 1300000, digg_count: 63100, comment_count: 665, collect_count: 5732, share_count: 890 },
-        video: { cover: { url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604679"] } }
+        video: {
+          play_addr: {
+            uri: "v1c044g50000d61421fog65kcof3lhdg",
+            url_list: [secondVideoMp4]
+          },
+          play_addr_h264: {
+            uri: "v1c044g50000d61421fog65kcof3lhdg",
+            url_list: [secondVideoMp4]
+          },
+          download_addr: {
+            uri: "v1c044g50000d61421fog65kcof3lhdg",
+            url_list: [secondVideoMp4]
+          },
+          cover: { url_list: [secondVideoCover] },
+          dynamic_cover: { url_list: [secondVideoCover] },
+          origin_cover: { url_list: [secondVideoCover] },
+          width: 1080,
+          height: 1920,
+          ratio: "720p",
+          duration: 15000
+        }
       },
       {
         aweme_id: "7100000000000000003",
