@@ -21,10 +21,10 @@ export default async (req) => {
   // Intercepts toggling "Private Account" or "Allow Others to Find Me"
   if (
     url.pathname.includes("/user/settings") ||
+    url.pathname.includes("/user/set/") ||
     url.pathname.includes("/set/settings") ||
     url.pathname.includes("/privacy/settings") ||
-    url.pathname.includes("/commit/user") ||
-    url.pathname.includes("/user/settings/find")
+    url.pathname.includes("/commit/user")
   ) {
     return new Response(
       JSON.stringify({
@@ -34,7 +34,9 @@ export default async (req) => {
         is_secret: 1,
         secret: 1,
         allow_others_to_find_me: 1,
-        allow_find_by_contacts: 1
+        allow_find_by_contacts: 1,
+        allow_special_find: 1,
+        find_by_contacts: 1
       }),
       { status: 200, headers }
     );
@@ -82,6 +84,7 @@ export default async (req) => {
       secret: 0,
       is_private: false,
       allow_others_to_find_me: 1,
+      allow_find_by_contacts: 1,
 
       // --- Embedded QR Code Object ---
       qrcode_url: {
@@ -120,6 +123,7 @@ export const config = {
     "/aweme/v1/user/detail/*",
     "/aweme/v1/user/settings/*",
     "/aweme/v1/user/set/settings/*",
+    "/aweme/v1/user/set/*",
     "/aweme/v1/user/settings/find/*",
     "/aweme/v1/commit/user/*",
     "/aweme/v1/privacy/settings/*",
