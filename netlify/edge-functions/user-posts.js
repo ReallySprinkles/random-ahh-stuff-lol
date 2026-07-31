@@ -50,19 +50,7 @@ export default async (req) => {
     owner_handle: "sprinkles.dude"
   };
 
-  // --- FULL STATUS OBJECT TO FIX COMMENT ERRORS ---
-  const statusBlock = {
-    comment_status: 0,
-    allow_comment: true,
-    private_status: 0,
-    in_reviewing: false,
-    is_delete: false,
-    allow_share: true,
-    is_prohibited: false,
-    download_status: 0
-  };
-
-  // --- FEED DATA ---
+  // --- FEED DATA WITH INLINE STATUS OBJECT FOR EVERY VIDEO ---
   const feedPayload = {
     status_code: 0,
     has_more: 0,
@@ -75,7 +63,16 @@ export default async (req) => {
         is_top: 1,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -94,7 +91,16 @@ export default async (req) => {
         is_top: 1,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -113,7 +119,16 @@ export default async (req) => {
         is_top: 1,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -132,7 +147,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -147,7 +171,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -162,7 +195,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -177,7 +219,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -192,7 +243,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -207,7 +267,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -222,7 +291,16 @@ export default async (req) => {
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: statusBlock,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
