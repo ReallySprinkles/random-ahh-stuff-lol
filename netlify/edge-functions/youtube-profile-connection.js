@@ -17,7 +17,24 @@ export default async (req) => {
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
-  // --- 1. SETTINGS ENDPOINT CHECK ---
+  // --- 1. PRIVACY & USER SETTINGS TOGGLE ---
+  if (
+    url.pathname.includes("/user/settings/") ||
+    url.pathname.includes("/user/set/settings/") ||
+    url.pathname.includes("/privacy/settings/")
+  ) {
+    return new Response(
+      JSON.stringify({
+        status_code: 0,
+        status_msg: "success",
+        is_private: 1,
+        secret: 1
+      }),
+      { status: 200, headers }
+    );
+  }
+
+  // --- 2. SETTINGS ENDPOINT CHECK ---
   // The app checks settings before loading QR features.
   if (url.pathname.includes("/settings/")) {
     return new Response(
@@ -33,7 +50,7 @@ export default async (req) => {
     );
   }
 
-  // --- 2. DEDICATED QR CODE ENDPOINTS ---
+  // --- 3. DEDICATED QR CODE ENDPOINTS ---
   if (url.pathname.includes("/qrcode")) {
     return new Response(
       JSON.stringify({
@@ -48,7 +65,7 @@ export default async (req) => {
     );
   }
 
-  // --- 3. PROFILE & USER PAYLOAD ---
+  // --- 4. PROFILE & USER PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
@@ -57,6 +74,7 @@ export default async (req) => {
       nickname: "Name",
       unique_id: "Username",
       signature: "Description",
+      secret: 0,
 
       // --- Embedded QR Code Object ---
       qrcode_url: {
@@ -93,6 +111,9 @@ export const config = {
     "/aweme/v1/user/profile/self/*",
     "/aweme/v1/user",
     "/aweme/v1/user/detail/*",
+    "/aweme/v1/user/settings/*",
+    "/aweme/v1/user/set/settings/*",
+    "/aweme/v1/privacy/settings/*",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
     "/aweme/v1/user/qrcode/*",
