@@ -18,11 +18,12 @@ export default async (req) => {
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
   // --- 1. PRIVACY & SETTINGS TOGGLES ---
-  // Intercepts toggling "Private Account" or "Allow Others to Find Me"
+  // Intercepts toggling "Private Account", "Allow Others to Find Me", and all sub-settings updates
   if (
     url.pathname.includes("/user/settings") ||
-    url.pathname.includes("/user/set/") ||
+    url.pathname.includes("/user/set") ||
     url.pathname.includes("/set/settings") ||
+    url.pathname.includes("/settings/set") ||
     url.pathname.includes("/privacy/settings") ||
     url.pathname.includes("/commit/user")
   ) {
@@ -36,7 +37,13 @@ export default async (req) => {
         allow_others_to_find_me: 1,
         allow_find_by_contacts: 1,
         allow_special_find: 1,
-        find_by_contacts: 1
+        find_by_contacts: 1,
+        find_by_phone: 1,
+        settings: {
+          allow_others_to_find_me: 1,
+          allow_find_by_contacts: 1,
+          allow_special_find: 1
+        }
       }),
       { status: 200, headers }
     );
@@ -85,6 +92,7 @@ export default async (req) => {
       is_private: false,
       allow_others_to_find_me: 1,
       allow_find_by_contacts: 1,
+      allow_special_find: 1,
 
       // --- Embedded QR Code Object ---
       qrcode_url: {
@@ -123,6 +131,7 @@ export const config = {
     "/aweme/v1/user/detail/*",
     "/aweme/v1/user/settings/*",
     "/aweme/v1/user/set/settings/*",
+    "/aweme/v1/user/settings/set/*",
     "/aweme/v1/user/set/*",
     "/aweme/v1/user/settings/find/*",
     "/aweme/v1/commit/user/*",
