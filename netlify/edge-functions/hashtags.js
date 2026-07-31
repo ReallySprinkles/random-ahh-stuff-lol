@@ -24,7 +24,9 @@ export default async (req) => {
     { cid: "1009", name: "nostalgia", desc: "throwback", count: 9999 }
   ];
 
-  // Builds 3 lightweight video cards per hashtag
+  const NEW_IMAGE_URL = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3836.jpeg";
+
+  // Builds 3 video cards per hashtag using the new photo URL
   const buildVideos = (tagCid, tagName) => {
     return [1, 2, 3].map((num) => ({
       aweme_id: `${tagCid}0${num}`,
@@ -34,14 +36,10 @@ export default async (req) => {
           url_list: [`https://valoria-social.com/videos/${tagName}_${num}.mp4`]
         },
         cover: {
-          url_list: [
-            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-          ]
+          url_list: [NEW_IMAGE_URL]
         },
         origin_cover: {
-          url_list: [
-            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-          ]
+          url_list: [NEW_IMAGE_URL]
         },
         height: 720,
         width: 720
@@ -50,9 +48,7 @@ export default async (req) => {
         uid: `80${num}`,
         nickname: `User ${num}`,
         avatar_thumb: {
-          url_list: [
-            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-          ]
+          url_list: [NEW_IMAGE_URL]
         }
       },
       statistics: {
@@ -92,9 +88,7 @@ export default async (req) => {
         title: "the",
         schema: "sslocal://webview?url=https://39o.netlify.app",
         banner_url: {
-          url_list: [
-            "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
-          ]
+          url_list: [NEW_IMAGE_URL]
         }
       }
     ],
