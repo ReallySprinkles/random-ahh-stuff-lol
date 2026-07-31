@@ -17,6 +17,9 @@ export default async (req) => {
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
+  // --- RAW GITHUB PFP LINK ---
+  const myPfpUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
+
   // --- 1. DEDICATED QR CODE ENDPOINTS ---
   if (url.pathname.includes("/qrcode")) {
     return new Response(
@@ -54,24 +57,26 @@ export default async (req) => {
       has_password: true,
       has_email: true,
 
-      // --- AVATAR URLS ---
+      // --- ALL AVATAR VARIANTS ---
       avatar_thumb: {
         uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
-        url_list: [
-          "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
-        ]
+        url_list: [myPfpUrl]
       },
       avatar_medium: {
         uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
-        url_list: [
-          "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_300x300.jpeg"
-        ]
+        url_list: [myPfpUrl]
       },
       avatar_larger: {
         uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
-        url_list: [
-          "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_720x720.jpeg"
-        ]
+        url_list: [myPfpUrl]
+      },
+      avatar_168x168: {
+        uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
+        url_list: [myPfpUrl]
+      },
+      avatar_300x300: {
+        uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
+        url_list: [myPfpUrl]
       },
 
       // --- QR CODE ---
