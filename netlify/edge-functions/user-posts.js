@@ -32,7 +32,7 @@ export default async (req) => {
   const fourthVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3818.png";
 
   // Video 5 Assets
-  const fifthVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d9f5pu7og65j257oon60.mp4";
+  const fifthVideoMp4 = "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/export_1785356065271.mp4";
   const fifthVideoCover = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/temp_image_A8D00800-6A33-49E8-A5B8-DC05F32D8652.jpeg";
 
   // --- AUTHOR OBJECT ---
@@ -289,15 +289,15 @@ export default async (req) => {
         statistics: { play_count: 306, digg_count: 18, comment_count: 4, collect_count: 3, share_count: 1 },
         video: {
           play_addr: {
-            uri: "v1c044g50000d9f5pu7og65j257oon60",
+            uri: "export_1785356065271",
             url_list: [fifthVideoMp4]
           },
           play_addr_h264: {
-            uri: "v1c044g50000d9f5pu7og65j257oon60",
+            uri: "export_1785356065271",
             url_list: [fifthVideoMp4]
           },
           download_addr: {
-            uri: "v1c044g50000d9f5pu7og65j257oon60",
+            uri: "export_1785356065271",
             url_list: [fifthVideoMp4]
           },
           cover: { url_list: [fifthVideoCover] },
