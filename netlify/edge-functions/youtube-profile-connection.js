@@ -23,7 +23,8 @@ export default async (req) => {
     url.pathname.includes("/user/settings") ||
     url.pathname.includes("/set/settings") ||
     url.pathname.includes("/privacy/settings") ||
-    url.pathname.includes("/commit/user")
+    url.pathname.includes("/commit/user") ||
+    url.pathname.includes("/user/settings/find")
   ) {
     return new Response(
       JSON.stringify({
@@ -31,7 +32,9 @@ export default async (req) => {
         status_msg: "success",
         is_private: 1,
         is_secret: 1,
-        secret: 1
+        secret: 1,
+        allow_others_to_find_me: 1,
+        allow_find_by_contacts: 1
       }),
       { status: 200, headers }
     );
@@ -78,6 +81,7 @@ export default async (req) => {
       signature: "Description",
       secret: 0,
       is_private: false,
+      allow_others_to_find_me: 1,
 
       // --- Embedded QR Code Object ---
       qrcode_url: {
@@ -116,6 +120,7 @@ export const config = {
     "/aweme/v1/user/detail/*",
     "/aweme/v1/user/settings/*",
     "/aweme/v1/user/set/settings/*",
+    "/aweme/v1/user/settings/find/*",
     "/aweme/v1/commit/user/*",
     "/aweme/v1/privacy/settings/*",
     "/aweme/v1/social/bind/*",
