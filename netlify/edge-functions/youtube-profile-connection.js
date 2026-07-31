@@ -17,7 +17,6 @@ export default async (req) => {
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
-  // --- 1. DEDICATED QR CODE ENDPOINTS ---
   if (url.pathname.includes("/qrcode")) {
     return new Response(
       JSON.stringify({
@@ -32,7 +31,6 @@ export default async (req) => {
     );
   }
 
-  // --- 2. PROFILE & USER PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
@@ -44,6 +42,15 @@ export default async (req) => {
       secret: 0,
       is_private: 0,
       allow_others_to_find_me: 1,
+
+      // --- PHONE & ACCOUNT BINDING FLAGS (Fixes "Please add a phone number first") ---
+      telephone: "+15550192831",
+      phone: "+15550192831",
+      mobile: "+15550192831",
+      bind_phone: "+15550192831",
+      is_phone_bound: true,
+      has_password: true,
+      has_email: true,
 
       qrcode_url: {
         uri: "qrcode/7117828228.png",
