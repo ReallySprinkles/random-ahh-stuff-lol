@@ -14,15 +14,31 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // Generate dynamic QR code image via free API pointing to the user profile link
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
-  // Dedicated handler if app specifically calls the qrcode endpoint
-  if (url.pathname.includes("/qrcode/")) {
+  // --- 1. SETTINGS ENDPOINT CHECK ---
+  // The app checks settings before loading QR features.
+  if (url.pathname.includes("/settings/")) {
     return new Response(
       JSON.stringify({
         status_code: 0,
+        settings: {
+          enable_qrcode: 1,
+          share_url_white_list: ["*"],
+          enable_music_picker: 1
+        }
+      }),
+      { status: 200, headers }
+    );
+  }
+
+  // --- 2. DEDICATED QR CODE ENDPOINTS ---
+  if (url.pathname.includes("/qrcode")) {
+    return new Response(
+      JSON.stringify({
+        status_code: 0,
+        status_msg: "",
         qrcode_url: {
           uri: "qrcode/7117828228.png",
           url_list: [qrImageUrl]
@@ -32,7 +48,7 @@ export default async (req) => {
     );
   }
 
-  // User details payload including social link metadata & embedded QR code
+  // --- 3. PROFILE & USER PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
@@ -42,17 +58,15 @@ export default async (req) => {
       unique_id: "Username",
       signature: "Description",
 
-      // --- QR Code payload object ---
+      // --- Embedded QR Code Object ---
       qrcode_url: {
         uri: "qrcode/7117828228.png",
         url_list: [qrImageUrl]
       },
 
-      // --- YouTube Connection Fields ---
-      youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA", // Your YT Channel ID
-      youtube_channel_title: "sprinkles",      // Displays as connected name
-
-      // --- Instagram Field ---
+      // --- Social Links ---
+      youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA",
+      youtube_channel_title: "sprinkles",
       ins_id: "iamreallysprinkles",
 
       // --- Profile Stats ---
@@ -78,9 +92,12 @@ export const config = {
   path: [
     "/aweme/v1/user/profile/self/*",
     "/aweme/v1/user",
+    "/aweme/v1/user/*",
     "/aweme/v1/user/detail/*",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
-    "/aweme/v1/qrcode/find/*"
+    "/aweme/v1/user/qrcode/*",
+    "/aweme/v1/settings/*",
+    "/settings/*"
   ]
 };
