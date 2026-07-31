@@ -17,72 +17,7 @@ export default async (req) => {
   const profileUrl = `https://musically.com/h5/share/usr/7117828228`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
 
-  // --- 1. PRIVACY, SETTINGS & PUSH NOTIFICATION TOGGLES ---
-  // Intercepts Private Account, Allow Others to Find Me, and Push Notifications
-  if (
-    url.pathname.includes("/settings") ||
-    url.pathname.includes("/privacy") ||
-    url.pathname.includes("/notice") ||
-    url.pathname.includes("/notify") ||
-    url.pathname.includes("/commit") ||
-    url.pathname.includes("/modify") ||
-    url.pathname.includes("/set")
-  ) {
-    return new Response(
-      JSON.stringify({
-        status_code: 0,
-        status_msg: "",
-        
-        // Privacy Flags
-        is_private: 1,
-        is_secret: 1,
-        secret: 1,
-        allow_others_to_find_me: 1,
-        allow_find_by_contacts: 1,
-        allow_special_find: 1,
-        find_by_contacts: 1,
-        find_by_phone: 1,
-
-        // Push Notification Settings Flags
-        comment: 1,
-        follow: 1,
-        digg: 1,
-        fans: 1,
-        likes: 1,
-        new_fans: 1,
-        new_likes: 1,
-        new_comments: 1,
-
-        user: {
-          uid: "7117828228",
-          secret: 0,
-          is_private: 0,
-          allow_others_to_find_me: 1,
-          allow_find_by_contacts: 1,
-          allow_special_find: 1,
-          comment: 1,
-          follow: 1,
-          digg: 1
-        },
-        settings: {
-          status_code: 0,
-          allow_others_to_find_me: 1,
-          allow_find_by_contacts: 1,
-          allow_special_find: 1,
-          is_private: 1,
-          secret: 1,
-          comment: 1,
-          follow: 1,
-          digg: 1,
-          fans: 1,
-          likes: 1
-        }
-      }),
-      { status: 200, headers }
-    );
-  }
-
-  // --- 2. DEDICATED QR CODE ENDPOINTS ---
+  // --- 1. DEDICATED QR CODE ENDPOINTS ---
   if (url.pathname.includes("/qrcode")) {
     return new Response(
       JSON.stringify({
@@ -97,7 +32,7 @@ export default async (req) => {
     );
   }
 
-  // --- 3. PROFILE & USER PAYLOAD ---
+  // --- 2. PROFILE & USER PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
@@ -109,21 +44,16 @@ export default async (req) => {
       secret: 0,
       is_private: 0,
       allow_others_to_find_me: 1,
-      allow_find_by_contacts: 1,
-      allow_special_find: 1,
 
-      // --- Embedded QR Code Object ---
       qrcode_url: {
         uri: "qrcode/7117828228.png",
         url_list: [qrImageUrl]
       },
 
-      // --- Social Links ---
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA",
       youtube_channel_title: "sprinkles",
       ins_id: "iamreallysprinkles",
 
-      // --- Profile Stats ---
       following_count: 2,
       follower_count: 2,
       total_favorited: 100000,
@@ -147,33 +77,8 @@ export const config = {
     "/aweme/v1/user/profile/self/*",
     "/aweme/v1/user",
     "/aweme/v1/user/detail/*",
-    "/aweme/v1/user/settings/*",
-    "/aweme/v1/user/settings",
-    "/aweme/v1/user/settings/notice/*",
-    "/aweme/v1/user/settings/notice",
-    "/aweme/v1/user/notice/*",
-    "/aweme/v1/user/notice/settings/*",
-    "/aweme/v1/notify/settings/*",
-    "/aweme/v1/notify/settings",
-    "/aweme/v1/user/set/settings/*",
-    "/aweme/v1/user/set/settings",
-    "/aweme/v1/user/settings/set/*",
-    "/aweme/v1/user/settings/set",
-    "/aweme/v1/user/set/*",
-    "/aweme/v1/user/set",
-    "/aweme/v1/user/settings/find/*",
-    "/aweme/v1/user/privacy/*",
-    "/aweme/v1/user/privacy",
-    "/aweme/v1/user/modify/*",
-    "/aweme/v1/user/modify",
-    "/aweme/v1/commit/user/*",
-    "/aweme/v1/commit/user/set/*",
-    "/aweme/v1/privacy/settings/*",
-    "/aweme/v1/privacy/*",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
-    "/aweme/v1/user/qrcode/*",
-    "/aweme/v1/settings/*",
-    "/settings/*"
+    "/aweme/v1/user/qrcode/*"
   ]
 };
