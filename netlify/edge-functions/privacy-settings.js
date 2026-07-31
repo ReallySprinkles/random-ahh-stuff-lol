@@ -16,22 +16,204 @@ export default async (req) => {
 
   // --- 1. BLOCK LIST ENDPOINTS ---
   if (url.pathname.includes("/block/list")) {
+    const blockedUsers = [
+      {
+        uid: "8000000000000000001",
+        nickname: "fxrestgo0d 🩻❤️",
+        unique_id: "life.is_food.and_sleep",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000002",
+        nickname: "Someone story",
+        unique_id: "somestories1_",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000003",
+        nickname: "because both",
+        unique_id: "because.both0",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000004",
+        nickname: "user268161791107",
+        unique_id: "user268161791107",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000005",
+        nickname: "user7140233321004",
+        unique_id: "user7140233321004",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000006",
+        nickname: "milos2016",
+        unique_id: "milos20163",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000008",
+        nickname: "James Charles",
+        unique_id: "jamescharles",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000009",
+        nickname: "Nono AI",
+        unique_id: "lucartppo",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000010",
+        nickname: "TikTok Jesus",
+        unique_id: "scottywartooth",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000011",
+        nickname: "Spredge",
+        unique_id: "spredge",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000012",
+        nickname: "Jenny Hoyos",
+        unique_id: "jennyhoyosfr",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000013",
+        nickname: "The Constant",
+        unique_id: "thecnstant",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000014",
+        nickname: "Samsung Israel",
+        unique_id: "samsungisrael",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000015",
+        nickname: "kirkiimad",
+        unique_id: "kirkiimad",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000016",
+        nickname: "Brandon Max",
+        unique_id: "itsbrandonmax",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000017",
+        nickname: "Aysel ✨🏴",
+        unique_id: "straykids_enhypen2012",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000018",
+        nickname: "Stravolinska Mitrov Archivo...",
+        unique_id: "stravolinska",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000019",
+        nickname: "acyl34",
+        unique_id: "acyl341",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      },
+      {
+        uid: "8000000000000000020",
+        nickname: "aizen31",
+        unique_id: "aizenmacapas",
+        avatar_thumb: {
+          url_list: [
+            "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
+          ]
+        }
+      }
+    ];
+
     return new Response(
       JSON.stringify({
         status_code: 0,
         status_msg: "",
-        block_list: [
-          {
-            uid: "9999999999",
-            nickname: "le user",
-            unique_id: "le.user",
-            avatar_thumb: {
-              url_list: [
-                "https://p16-va-tiktok.ibyteimg.com/img/musically-maliva-obj/1654573752604678~c5_100x100.jpeg"
-              ]
-            }
-          }
-        ],
+        block_list: blockedUsers,
         has_more: 0
       }),
       { status: 200, headers }
