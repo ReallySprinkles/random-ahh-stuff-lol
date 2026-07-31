@@ -54,11 +54,13 @@ export default async (req) => {
     );
   }
 
-  // --- 3. CREATE / COMMIT AWEME (Fakes the final post creation) ---
+  // --- 3. CREATE / COMMIT / POST AWEME (Fakes the final post creation) ---
   if (
     url.pathname.includes("/create/aweme") ||
     url.pathname.includes("/aweme/create") ||
-    url.pathname.includes("/commit/aweme")
+    url.pathname.includes("/commit/aweme") ||
+    url.pathname.includes("/post/aweme") ||
+    url.pathname.includes("/aweme/post")
   ) {
     const fakeAwemeId = `7117828228${Math.floor(Math.random() * 10000)}`;
 
@@ -164,6 +166,8 @@ export const config = {
     "/aweme/v1/create/aweme/*",
     "/aweme/v1/aweme/create/*",
     "/aweme/v1/commit/aweme/*",
+    "/aweme/v1/post/aweme/*",
+    "/aweme/v1/aweme/post/*",
     "/aweme/v1/enc/video/*"
   ]
 };
