@@ -421,6 +421,8 @@ export const config = {
     "/aweme/v1/aweme/post",
     "/aweme/v1/aweme/favorite/*",
     "/aweme/v1/aweme/favorite",
-    "/aweme/v1/user/aweme/*"
+    "/aweme/v1/user/aweme/*",
+    "/aweme/v1/aweme/detail/*",
+    "/aweme/v1/aweme/detail"
   ]
 };
