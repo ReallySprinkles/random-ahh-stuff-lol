@@ -75,6 +75,34 @@ export default async (req) => {
     status: 1
   };
 
+  // --- REUSABLE INTERACTION FLAGS ---
+  const interactionFlags = {
+    item_react: 0,
+    can_react: true,
+    action_orig_with_react: 0,
+    react_setting: 0,
+    can_duet: true,
+    duet_setting: 0,
+    can_stitch: true,
+    stitch_setting: 0,
+    can_share: true,
+    allow_share: true,
+    item_duet: 0,
+    item_stitch: 0
+  };
+
+  const defaultStatus = {
+    comment_status: 0,
+    allow_comment: true,
+    private_status: 0,
+    in_reviewing: false,
+    is_delete: false,
+    allow_share: true,
+    is_prohibited: false,
+    download_status: 0,
+    with_goods: false
+  };
+
   // --- FEED DATA ---
   const feedPayload = {
     status_code: 0,
@@ -89,16 +117,8 @@ export default async (req) => {
         is_top: 1,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -130,16 +150,8 @@ export default async (req) => {
         is_top: 1,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -164,23 +176,15 @@ export default async (req) => {
           duration: 15000
         }
       },
-      // --- TOP VIDEO 3 (LAST TOP VIDEO) ---
+      // --- TOP VIDEO 3 ---
       {
         aweme_id: "7100000000000000003",
         desc: "hi #Eminem #Ronaldo #eladeselasobinubaliepraso",
         is_top: 1,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -205,7 +209,7 @@ export default async (req) => {
           duration: 15000
         }
       },
-      // --- NEW VIDEO (PLACED IMMEDIATELY AFTER LAST TOP VIDEO) ---
+      // --- NEW VIDEO (iPhone 11 Pro) ---
       {
         aweme_id: "7100000000000000099",
         desc: "Le ✨iPhone 11 Pro✨ #apple #iphone #meme #iphone11 #destroyediphone",
@@ -220,16 +224,8 @@ export default async (req) => {
           author: "Polo G",
           album: "I Know - Polo G"
         },
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -261,23 +257,15 @@ export default async (req) => {
           { start: 51, end: 68, type: 1, hashtag_name: "destroyediphone" }
         ]
       },
-      // --- REMAINING REGULAR POSTS ---
+      // --- REGULAR POST 4 ---
       {
         aweme_id: "7100000000000000004",
         desc: "#CapCut",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -297,22 +285,15 @@ export default async (req) => {
           duration: 15000
         }
       },
+      // --- REGULAR POST 5 ---
       {
         aweme_id: "7100000000000000005",
         desc: "",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -332,22 +313,15 @@ export default async (req) => {
           duration: 15000
         }
       },
+      // --- REGULAR POST 6 ---
       {
         aweme_id: "7100000000000000006",
         desc: "",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -367,22 +341,15 @@ export default async (req) => {
           duration: 15000
         }
       },
+      // --- REGULAR POST 7 ---
       {
         aweme_id: "7100000000000000007",
         desc: "",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -391,22 +358,15 @@ export default async (req) => {
         statistics: { play_count: 956, digg_count: 22, comment_count: 5, collect_count: 7, share_count: 2 },
         video: { cover: { uri: "cover_7", url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604684"] } }
       },
+      // --- REGULAR POST 8 ---
       {
         aweme_id: "7100000000000000008",
         desc: "#CapCut",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -415,22 +375,15 @@ export default async (req) => {
         statistics: { play_count: 1022, digg_count: 32, comment_count: 7, collect_count: 7, share_count: 3 },
         video: { cover: { uri: "cover_8", url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604685"] } }
       },
+      // --- REGULAR POST 9 ---
       {
         aweme_id: "7100000000000000009",
         desc: "app is called L.L.E",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
@@ -439,22 +392,15 @@ export default async (req) => {
         statistics: { play_count: 350, digg_count: 8, comment_count: 6, collect_count: 2, share_count: 1 },
         video: { cover: { uri: "cover_9", url_list: ["https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/1654573752604686"] } }
       },
+      // --- REGULAR POST 10 ---
       {
         aweme_id: "7100000000000000010",
         desc: "#CapCut",
         is_top: 0,
         author: authorData,
         music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
+        status: defaultStatus,
+        ...interactionFlags,
         item_comment_settings: 0,
         comment_permission_status: 0,
         allow_comment: 1,
