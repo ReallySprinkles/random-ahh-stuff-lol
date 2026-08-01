@@ -82,6 +82,130 @@ export default async (req) => {
     max_cursor: 0,
     min_cursor: 0,
     aweme_list: [
+      // --- TOP VIDEO 1 ---
+      {
+        aweme_id: "7100000000000000001",
+        desc: "55 people I love you only ahh song 🥀 #Eminem #Ronaldo",
+        is_top: 1,
+        author: authorData,
+        music: defaultMusic,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
+        item_comment_settings: 0,
+        comment_permission_status: 0,
+        allow_comment: 1,
+        share_url: "https://vm.tiktok.com/ZM8123456/",
+        share_info: {
+          share_url: "https://vm.tiktok.com/ZM8123456/",
+          share_desc: "Check out this video!",
+          share_title: "55 people I love you only ahh song 🥀",
+          share_weibo_desc: "Check out this video!"
+        },
+        statistics: { play_count: 2100000, digg_count: 157500, comment_count: 2235, collect_count: 30600, share_count: 1240 },
+        video: {
+          play_addr: { uri: "v1c044g50000d6hlbr7og65klb5r0ti0", url_list: [firstVideoMp4] },
+          play_addr_h264: { uri: "v1c044g50000d6hlbr7og65klb5r0ti0", url_list: [firstVideoMp4] },
+          download_addr: { uri: "v1c044g50000d6hlbr7og65klb5r0ti0", url_list: [firstVideoMp4] },
+          cover: { uri: "cover_1", url_list: [firstVideoCover] },
+          dynamic_cover: { uri: "cover_1", url_list: [firstVideoCover] },
+          origin_cover: { uri: "cover_1", url_list: [firstVideoCover] },
+          width: 1080,
+          height: 1920,
+          ratio: "720p",
+          duration: 15000
+        }
+      },
+      // --- TOP VIDEO 2 ---
+      {
+        aweme_id: "7100000000000000002",
+        desc: "Ain't no way 😭✌️ #fyp #roblox #epstein #epsteinfiles #epsteinroblox",
+        is_top: 1,
+        author: authorData,
+        music: defaultMusic,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
+        item_comment_settings: 0,
+        comment_permission_status: 0,
+        allow_comment: 1,
+        share_url: "https://vm.tiktok.com/ZM8123457/",
+        share_info: {
+          share_url: "https://vm.tiktok.com/ZM8123457/",
+          share_desc: "Check out this video!",
+          share_title: "Ain't no way 😭✌️",
+          share_weibo_desc: "Check out this video!"
+        },
+        statistics: { play_count: 1300000, digg_count: 63100, comment_count: 665, collect_count: 5732, share_count: 890 },
+        video: {
+          play_addr: { uri: "v1c044g50000d61421fog65kcof3lhdg", url_list: [secondVideoMp4] },
+          play_addr_h264: { uri: "v1c044g50000d61421fog65kcof3lhdg", url_list: [secondVideoMp4] },
+          download_addr: { uri: "v1c044g50000d61421fog65kcof3lhdg", url_list: [secondVideoMp4] },
+          cover: { uri: "cover_2", url_list: [secondVideoCover] },
+          dynamic_cover: { uri: "cover_2", url_list: [secondVideoCover] },
+          origin_cover: { uri: "cover_2", url_list: [secondVideoCover] },
+          width: 1080,
+          height: 1920,
+          ratio: "720p",
+          duration: 15000
+        }
+      },
+      // --- TOP VIDEO 3 (LAST TOP VIDEO) ---
+      {
+        aweme_id: "7100000000000000003",
+        desc: "hi #Eminem #Ronaldo #eladeselasobinubaliepraso",
+        is_top: 1,
+        author: authorData,
+        music: defaultMusic,
+        status: {
+          comment_status: 0,
+          allow_comment: true,
+          private_status: 0,
+          in_reviewing: false,
+          is_delete: false,
+          allow_share: true,
+          is_prohibited: false,
+          download_status: 0
+        },
+        item_comment_settings: 0,
+        comment_permission_status: 0,
+        allow_comment: 1,
+        share_url: "https://vm.tiktok.com/ZM8123458/",
+        share_info: {
+          share_url: "https://vm.tiktok.com/ZM8123458/",
+          share_desc: "Check out this video!",
+          share_title: "hi",
+          share_weibo_desc: "Check out this video!"
+        },
+        statistics: { play_count: 739400, digg_count: 70700, comment_count: 1107, collect_count: 9742, share_count: 450 },
+        video: {
+          play_addr: { uri: "v1c044g50000d6pu2dvog65inipsr2q0", url_list: [thirdVideoMp4] },
+          play_addr_h264: { uri: "v1c044g50000d6pu2dvog65inipsr2q0", url_list: [thirdVideoMp4] },
+          download_addr: { uri: "v1c044g50000d6pu2dvog65inipsr2q0", url_list: [thirdVideoMp4] },
+          cover: { uri: "cover_3", url_list: [thirdVideoCover] },
+          dynamic_cover: { uri: "cover_3", url_list: [thirdVideoCover] },
+          origin_cover: { uri: "cover_3", url_list: [thirdVideoCover] },
+          width: 1080,
+          height: 1920,
+          ratio: "720p",
+          duration: 15000
+        }
+      },
+      // --- NEW VIDEO (PLACED IMMEDIATELY AFTER LAST TOP VIDEO) ---
       {
         aweme_id: "7100000000000000099",
         desc: "Le ✨iPhone 11 Pro✨ #apple #iphone #meme #iphone11 #destroyediphone",
@@ -92,7 +216,7 @@ export default async (req) => {
           id: 7100000000000099002,
           id_str: "7100000000000099002",
           mid: "7100000000000099002",
-          title: "Contains: I Know - Polo G",
+          title: "Contains: I Know",
           author: "Polo G",
           album: "I Know - Polo G"
         },
@@ -137,126 +261,7 @@ export default async (req) => {
           { start: 51, end: 68, type: 1, hashtag_name: "destroyediphone" }
         ]
       },
-      {
-        aweme_id: "7100000000000000001",
-        desc: "55 people I love you only ahh song 🥀 #Eminem #Ronaldo",
-        is_top: 1,
-        author: authorData,
-        music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
-        item_comment_settings: 0,
-        comment_permission_status: 0,
-        allow_comment: 1,
-        share_url: "https://vm.tiktok.com/ZM8123456/",
-        share_info: {
-          share_url: "https://vm.tiktok.com/ZM8123456/",
-          share_desc: "Check out this video!",
-          share_title: "55 people I love you only ahh song 🥀",
-          share_weibo_desc: "Check out this video!"
-        },
-        statistics: { play_count: 2100000, digg_count: 157500, comment_count: 2235, collect_count: 30600, share_count: 1240 },
-        video: {
-          play_addr: { uri: "v1c044g50000d6hlbr7og65klb5r0ti0", url_list: [firstVideoMp4] },
-          play_addr_h264: { uri: "v1c044g50000d6hlbr7og65klb5r0ti0", url_list: [firstVideoMp4] },
-          download_addr: { uri: "v1c044g50000d6hlbr7og65klb5r0ti0", url_list: [firstVideoMp4] },
-          cover: { uri: "cover_1", url_list: [firstVideoCover] },
-          dynamic_cover: { uri: "cover_1", url_list: [firstVideoCover] },
-          origin_cover: { uri: "cover_1", url_list: [firstVideoCover] },
-          width: 1080,
-          height: 1920,
-          ratio: "720p",
-          duration: 15000
-        }
-      },
-      {
-        aweme_id: "7100000000000000002",
-        desc: "Ain't no way 😭✌️ #fyp #roblox #epstein #epsteinfiles #epsteinroblox",
-        is_top: 1,
-        author: authorData,
-        music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
-        item_comment_settings: 0,
-        comment_permission_status: 0,
-        allow_comment: 1,
-        share_url: "https://vm.tiktok.com/ZM8123457/",
-        share_info: {
-          share_url: "https://vm.tiktok.com/ZM8123457/",
-          share_desc: "Check out this video!",
-          share_title: "Ain't no way 😭✌️",
-          share_weibo_desc: "Check out this video!"
-        },
-        statistics: { play_count: 1300000, digg_count: 63100, comment_count: 665, collect_count: 5732, share_count: 890 },
-        video: {
-          play_addr: { uri: "v1c044g50000d61421fog65kcof3lhdg", url_list: [secondVideoMp4] },
-          play_addr_h264: { uri: "v1c044g50000d61421fog65kcof3lhdg", url_list: [secondVideoMp4] },
-          download_addr: { uri: "v1c044g50000d61421fog65kcof3lhdg", url_list: [secondVideoMp4] },
-          cover: { uri: "cover_2", url_list: [secondVideoCover] },
-          dynamic_cover: { uri: "cover_2", url_list: [secondVideoCover] },
-          origin_cover: { uri: "cover_2", url_list: [secondVideoCover] },
-          width: 1080,
-          height: 1920,
-          ratio: "720p",
-          duration: 15000
-        }
-      },
-      {
-        aweme_id: "7100000000000000003",
-        desc: "hi #Eminem #Ronaldo #eladeselasobinubaliepraso",
-        is_top: 1,
-        author: authorData,
-        music: defaultMusic,
-        status: {
-          comment_status: 0,
-          allow_comment: true,
-          private_status: 0,
-          in_reviewing: false,
-          is_delete: false,
-          allow_share: true,
-          is_prohibited: false,
-          download_status: 0
-        },
-        item_comment_settings: 0,
-        comment_permission_status: 0,
-        allow_comment: 1,
-        share_url: "https://vm.tiktok.com/ZM8123458/",
-        share_info: {
-          share_url: "https://vm.tiktok.com/ZM8123458/",
-          share_desc: "Check out this video!",
-          share_title: "hi",
-          share_weibo_desc: "Check out this video!"
-        },
-        statistics: { play_count: 739400, digg_count: 70700, comment_count: 1107, collect_count: 9742, share_count: 450 },
-        video: {
-          play_addr: { uri: "v1c044g50000d6pu2dvog65inipsr2q0", url_list: [thirdVideoMp4] },
-          play_addr_h264: { uri: "v1c044g50000d6pu2dvog65inipsr2q0", url_list: [thirdVideoMp4] },
-          download_addr: { uri: "v1c044g50000d6pu2dvog65inipsr2q0", url_list: [thirdVideoMp4] },
-          cover: { uri: "cover_3", url_list: [thirdVideoCover] },
-          dynamic_cover: { uri: "cover_3", url_list: [thirdVideoCover] },
-          origin_cover: { uri: "cover_3", url_list: [thirdVideoCover] },
-          width: 1080,
-          height: 1920,
-          ratio: "720p",
-          duration: 15000
-        }
-      },
+      // --- REMAINING REGULAR POSTS ---
       {
         aweme_id: "7100000000000000004",
         desc: "#CapCut",
