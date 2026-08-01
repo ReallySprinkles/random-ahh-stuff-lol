@@ -51,7 +51,18 @@ export default async (req) => {
     custom_verify: "",
     enterprise_verify_reason: "",
     secret: 0,
-    is_discipline_member: false
+    is_private: 0,
+    is_discipline_member: false,
+
+    // 🔑 AUTHOR PRIVACY & INTERACTION FLAGS
+    comment_setting: 0,        // 0 = Everyone can comment
+    duet_setting: 0,           // 0 = Everyone can duet
+    react_setting: 0,          // 0 = Everyone can react
+    stitch_setting: 0,         // 0 = Everyone can stitch
+    download_setting: 0,       // 0 = Allow video downloads
+    follow_status: 2,          // 2 = Mutual follow / Friends
+    follower_status: 2,
+    is_star: false
   };
 
   // --- DEFAULT SOUND OBJECT ---
@@ -88,7 +99,9 @@ export default async (req) => {
     can_share: true,
     allow_share: true,
     item_duet: 0,
-    item_stitch: 0
+    item_stitch: 0,
+    comment_setting: 0,
+    download_setting: 0
   };
 
   const defaultStatus = {
