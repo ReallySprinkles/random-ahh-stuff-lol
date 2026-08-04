@@ -187,10 +187,8 @@ export default async (req) => {
       // --- SOCIAL LINKS ---
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA",
       youtube_channel_title: "sprinkles",
-      ins_id: "iamreallysprinkles",
-      twitter_id: "ReallSprinkles",      // Replace with your Twitter handle
-      twitter_name: "sprinkles",    // Replace with your Twitter handle
-
+      ins_id: "iamreallysprinkles"
+        
       // --- METRICS ---
       following_count: 1188,
       follower_count: 4525,
