@@ -188,6 +188,8 @@ export default async (req) => {
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA",
       youtube_channel_title: "sprinkles",
       ins_id: "iamreallysprinkles",
+      twitter_id: "ReallSprinkles",      // Replace with your Twitter handle
+      twitter_name: "sprinkles",    // Replace with your Twitter handle
 
       // --- METRICS ---
       following_count: 1188,
@@ -215,9 +217,7 @@ export const config = {
     "/aweme/v1/user/*",
     "/aweme/v1/user/detail/*",
     "/aweme/v1/user/follower/list/*",
-    "/aweme/v1/user/follower/list",
     "/aweme/v1/user/following/list/*",
-    "/aweme/v1/user/following/list",
     "/aweme/v1/social/bind/*",
     "/aweme/v1/qrcode/*",
     "/aweme/v1/user/qrcode/*"
