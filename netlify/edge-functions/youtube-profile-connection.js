@@ -66,9 +66,9 @@ export default async (req) => {
       { uid: "10041", nickname: "тгк: Красноярский телеф...", unique_id: "krsk_tele", follow_status: 0 }
     ];
 
-      // --- 1. DEDICATED FOLLOWING LIST ENDPOINT ---
+      // --- 2. DEDICATED FOLLOWING LIST ENDPOINT ---
   if (url.pathname.includes("/following/list")) {
-    const followerList = [
+    const followingList = [
       { uid: "10001", nickname: "motorowiec", unique_id: "motorowiec10", follow_status: 0 },
       { uid: "10002", nickname: "Milo Korfalı,,", unique_id: "orphanminsu", follow_status: 0 },
       { uid: "10003", nickname: "Ate Nang", unique_id: "ate.nang", follow_status: 0 },
@@ -116,6 +116,7 @@ export default async (req) => {
       JSON.stringify({
         status_code: 0,
         followers: followerList,
+        following: followingList,
         total: 4525,
         has_more: 0
       }),
