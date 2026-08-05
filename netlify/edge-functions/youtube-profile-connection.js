@@ -20,49 +20,27 @@ export default async (req) => {
   // --- RAW GITHUB PFP LINK ---
   const myPfpUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
 
-  // --- SHARED USER LIST ---
+  // --- AUTHOR MAP MATCHING RAW AWEME LIST UIDs ---
+  const authorRegistry = {
+    "10001": { nickname: "bloxyz wiedlak kasefar", unique_id: "bloxyz.wiedlak.kasefar", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10002": { nickname: "Gojo lover", unique_id: "gojo.lover676", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10003": { nickname: "💲", unique_id: "unknownscarface1", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10004": { nickname: "𝘿𝙮𝙡𝙗𝙖𝙣𝙖𝙣𝙏𝙚𝙘𝙝", unique_id: "dylbanantech", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10005": { nickname: "drtenmalonglost3rdson", unique_id: "drtenmalonglost3rdson", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg" },
+    "10006": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10007": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10008": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10009": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
+    "10010": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" }
+  };
+
+  // --- SHARED USER LIST FOR FOLLOWERS/FOLLOWING ---
   const sharedUserList = [
     { uid: "10001", nickname: "motorowiec", unique_id: "motorowiec10", follow_status: 0 },
     { uid: "10002", nickname: "Milo Korfalı,,", unique_id: "orphanminsu", follow_status: 0 },
     { uid: "10003", nickname: "Ate Nang", unique_id: "ate.nang", follow_status: 0 },
     { uid: "10004", nickname: "weluvelvinn", unique_id: "weluvelvinn", follow_status: 0 },
-    { uid: "10005", nickname: "GABG2", unique_id: "gabrielini56", follow_status: 0 },
-    { uid: "10006", nickname: "elijah.claur", unique_id: "elijah.claur", follow_status: 0 },
-    { uid: "10007", nickname: "Solange Camargo", unique_id: "solangecamargoale", follow_status: 0 },
-    { uid: "10008", nickname: "spookboo16", unique_id: "spookboo16", follow_status: 0 },
-    { uid: "10009", nickname: "yungestz", unique_id: "yungestz", follow_status: 0 },
-    { uid: "10010", nickname: "meimei", unique_id: "alwaysgoober", follow_status: 0 },
-    { uid: "10011", nickname: "lollo.e.leutum", unique_id: "lollo.e.leutum", follow_status: 0 },
-    { uid: "10012", nickname: "giuse_ 🇮🇹", unique_id: "giuseppe40531", follow_status: 0 },
-    { uid: "10013", nickname: "Prabh", unique_id: "pr_00008", follow_status: 0 },
-    { uid: "10014", nickname: "😈KING👑CELÉBRE👑أسا...", unique_id: "king.celbre2", follow_status: 0 },
-    { uid: "10015", nickname: "._.Alphalpha", unique_id: "._.alphalpha", follow_status: 0 },
-    { uid: "10016", nickname: "L30❤️(still a gd_ranzy fan...", unique_id: "leooooooooooooooooooooo0oo", follow_status: 0 },
-    { uid: "10017", nickname: "ღ•", unique_id: "5huukyo", follow_status: 2 }, // Friends
-    { uid: "10018", nickname: "tuffboi438", unique_id: "tuffboi438", follow_status: 0 },
-    { uid: "10019", nickname: "Edgar Munguía", unique_id: "edgarmungua3", follow_status: 0 },
-    { uid: "10020", nickname: "Credxl", unique_id: "cooldhiaaboy478", follow_status: 0 },
-    { uid: "10021", nickname: "Julia Persaud", unique_id: "julia.persaud2", follow_status: 0 },
-    { uid: "10022", nickname: "cricket", unique_id: "niyah5460", follow_status: 0 },
-    { uid: "10023", nickname: "214yerick", unique_id: "214yerick12", follow_status: 0 },
-    { uid: "10024", nickname: "KachowToons95", unique_id: "kachow.toons", follow_status: 0 },
-    { uid: "10025", nickname: "vylettouchette18y", unique_id: "vylettouchette18y", follow_status: 0 },
-    { uid: "10026", nickname: "Logan♠️🃏", unique_id: "that_white_colorado", follow_status: 0 },
-    { uid: "10027", nickname: "༄✦𝖍𝖞𝖉𝖗𝕬_𝕾𝖈𝖗𝖎𝖕𝖙𝖘✦☙", unique_id: "hydraduels", follow_status: 0 },
-    { uid: "10028", nickname: "💤💤💤", unique_id: "tothespiderman12", follow_status: 0 },
-    { uid: "10029", nickname: "Skate2fan", unique_id: "skate3fan2ndacc", follow_status: 0 },
-    { uid: "10030", nickname: "🦕", unique_id: ".halrry", follow_status: 2 }, // Friends
-    { uid: "10031", nickname: "amirokay_", unique_id: "amirokay_", follow_status: 0 },
-    { uid: "10032", nickname: "cat nior", unique_id: "cat.nior06", follow_status: 0 },
-    { uid: "10033", nickname: "paologamer20122", unique_id: "paologamer20122", follow_status: 0 },
-    { uid: "10034", nickname: "𝘍𝘚16", unique_id: "tickdickdaddy17", follow_status: 0 },
-    { uid: "10035", nickname: "fadedmotion", unique_id: "luv.scamz", follow_status: 0 },
-    { uid: "10036", nickname: "N🖇️", unique_id: "nourtomi11", follow_status: 0 },
-    { uid: "10037", nickname: "littleborder", unique_id: "littleborder", follow_status: 0 },
-    { uid: "10038", nickname: "KandiZilla", unique_id: "kandizilla", follow_status: 0 },
-    { uid: "10039", nickname: "Buses", unique_id: "dennys_manofficial563", follow_status: 0 },
-    { uid: "10040", nickname: "DEDAIN PEARL AUTOR", unique_id: "dedain.pearl.auto", follow_status: 0 },
-    { uid: "10041", nickname: "тгк: Красноярский телеф...", unique_id: "krsk_tele", follow_status: 0 }
+    { uid: "10005", nickname: "GABG2", unique_id: "gabrielini56", follow_status: 0 }
   ];
 
   // --- 1. DEDICATED FOLLOWER LIST ENDPOINT ---
@@ -106,23 +84,26 @@ export default async (req) => {
     );
   }
 
-  // --- 4. DYNAMIC ROUTING logic FOR USER PROFILES ---
+  // --- 4. DYNAMIC PROFILE ROUTING ---
   const targetUid = url.searchParams.get("user_id") || url.searchParams.get("sec_user_id");
   const isSelfProfile = url.pathname.includes("/profile/self") || targetUid === "7117828228";
   const isOtherProfile = url.pathname.includes("/profile/other") || (targetUid && targetUid !== "7117828228");
 
-  // If requesting someone else's profile, return target user data dynamically
   if (isOtherProfile && !isSelfProfile) {
-    const matchedUser = sharedUserList.find(u => u.uid === targetUid);
+    const authorData = authorRegistry[targetUid] || {
+      nickname: targetUid ? `User ${targetUid}` : "Unknown Creator",
+      unique_id: targetUid ? `user_${targetUid}` : "unknown_creator",
+      avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"
+    };
 
     const otherUserPayload = {
       status_code: 0,
       user: {
         uid: targetUid || "10005",
         short_id: targetUid || "10005",
-        nickname: matchedUser ? matchedUser.nickname : (targetUid ? `User ${targetUid}` : "drtenmalonglost3rdson"),
-        unique_id: matchedUser ? matchedUser.unique_id : (targetUid ? `user_${targetUid}` : "drtenmalonglost3rdson"),
-        signature: "No bio yet",
+        nickname: authorData.nickname,
+        unique_id: authorData.unique_id,
+        signature: "",
         secret: 0,
         is_private: false,
         allow_others_to_find_me: 1,
@@ -134,7 +115,7 @@ export default async (req) => {
         download_setting: 0,
         download_prompt_until: 0,
         
-        follow_status: matchedUser ? matchedUser.follow_status : 0,
+        follow_status: 0,
         follower_status: 0,
         is_following: false,
         is_followed: false,
@@ -142,16 +123,16 @@ export default async (req) => {
         is_discipline_member: false,
 
         avatar_thumb: {
-          uri: "musically-maliva-obj/default_avatar.jpeg",
-          url_list: ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
+          uri: "musically-maliva-obj/author_avatar.jpeg",
+          url_list: [authorData.avatar]
         },
         avatar_medium: {
-          uri: "musically-maliva-obj/default_avatar.jpeg",
-          url_list: ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
+          uri: "musically-maliva-obj/author_avatar.jpeg",
+          url_list: [authorData.avatar]
         },
         avatar_larger: {
-          uri: "musically-maliva-obj/default_avatar.jpeg",
-          url_list: ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
+          uri: "musically-maliva-obj/author_avatar.jpeg",
+          url_list: [authorData.avatar]
         },
 
         following_count: 0,
@@ -185,25 +166,22 @@ export default async (req) => {
       is_private: false,
       allow_others_to_find_me: 1,
 
-      // 🔑 CRITICAL INTERACTION & PRIVACY FLAGS (Bypasses React privacy error)
-      comment_setting: 0,             // 0 = Everyone
-      duet_setting: 0,                // 0 = Everyone
-      react_setting: 0,               // 0 = Everyone can react
-      stitch_setting: 0,              // 0 = Everyone
-      download_setting: 0,            // 0 = Allow video downloads
+      comment_setting: 0,
+      duet_setting: 0,
+      react_setting: 0,
+      stitch_setting: 0,
+      download_setting: 0,
       download_prompt_until: 0,
       
-      // 🔑 RELATIONSHIP & DISCIPLINE FLAGS
-      follow_status: 2,               // 2 = Mutual follow / Friends
+      follow_status: 2,
       follower_status: 2,
       is_following: true,
       is_followed: true,
       is_star: false,
       is_discipline_member: false,
 
-      // --- DEMOGRAPHICS & PROFILE PILLS ---
-      gender: 2, // 1 = Male
-      birthday: "2010-04-07", // Douyin parses this for Age & Zodiac (Aries)
+      gender: 2,
+      birthday: "2010-04-07",
       birthday_hide_level: 0,
       show_gender_strategy: 0,
       city: "Cairo",
@@ -213,7 +191,6 @@ export default async (req) => {
       ip_location: "Egypt",
       hide_location: 0,
 
-      // --- PHONE & ACCOUNT BINDING FLAGS ---
       telephone: "+15550192831",
       phone: "+15550192831",
       mobile: "+15550192831",
@@ -222,7 +199,6 @@ export default async (req) => {
       has_password: true,
       has_email: true,
 
-      // --- ALL AVATAR VARIANTS ---
       avatar_thumb: {
         uri: "musically-maliva-obj/sprinkles_avatar.jpeg",
         url_list: [myPfpUrl]
@@ -244,18 +220,15 @@ export default async (req) => {
         url_list: [myPfpUrl]
       },
 
-      // --- QR CODE ---
       qrcode_url: {
         uri: "qrcode/7117828228.png",
         url_list: [qrImageUrl]
       },
 
-      // --- SOCIAL LINKS ---
       youtube_channel_id: "UCC45pszowTR4u8OrY0HBYPA",
       youtube_channel_title: "sprinkles",
       ins_id: "iamreallysprinkles",
 
-      // --- METRICS ---
       following_count: 1188,
       follower_count: 4525,
       total_favorited: 358800,
