@@ -20,7 +20,7 @@ export default async (req) => {
     banner: [
       {
         bid: "1001",
-        title: "hi",
+        title: "sprinkles",
         banner_url: {
           uri: "banner/1001.png",
           url_list: [bannerImageUrl]
