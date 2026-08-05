@@ -208,11 +208,11 @@ export default async (req) => {
   },
   {
     "aweme_id": "1000000005",
-    "desc": "video 5",
+    "desc": "#fyp #funny #xycba #hamjimenoippo #cashapp",
     "author": {
       "uid": "12345",
-      "nickname": "sprinkles",
-      "unique_id": "sprinkles.dude",
+      "nickname": "drtenmalonglost3rdson",
+      "unique_id": "drtenmalonglost3rdson",
       "avatar_thumb": {
         "url_list": [
           "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/89e189f03cef0022a8460c231228f885~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=269c71b0&x-expires=1785531600&x-signature=4if9r4QSQfDJoMY4wEOVdmrZGh4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=sg1"
@@ -221,8 +221,8 @@ export default async (req) => {
     },
     "music": {
       "id": "7000000000000000001",
-      "title": "Original Sound",
-      "author": "sprinkles",
+      "title": "Contains: Packrunner Bitch",
+      "author": "Konygebony",
       "play_url": {
         "url_list": [
           "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v1c044g50000d9f5pu7og65j257oon60.mp3"
@@ -232,16 +232,16 @@ export default async (req) => {
     "video": {
       "play_addr": {
         "url_list": [
-          "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/main/v1c044g50000d9f5pu7og65j257oon60.mp4"
+          "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v12044gd0000d9m5d9nog65h8f76vsf0.mp4"
         ]
       },
       "width": 720,
       "height": 1280
     },
     "statistics": {
-      "digg_count": 5000,
-      "comment_count": 50,
-      "share_count": 20
+      "digg_count": 106612,
+      "comment_count": 635,
+      "share_count": 6349
     },
     "status": {
       "comment_status": 0,
