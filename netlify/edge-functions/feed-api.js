@@ -3,7 +3,7 @@
 export default async (req) => {
   const headers = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-SS-REQ-TICK",
+    "Access-Control-Allow-Headers": "*",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Content-Type": "application/json; charset=utf-8"
   };
@@ -12,24 +12,31 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // Helper to format avatar image objects expected by legacy builds
+  // Parse current cursor from app request to prevent page-end triggers
+  const url = new URL(req.url);
+  const reqMaxCursor = url.searchParams.get("max_cursor") || "0";
+
+  // Helper to construct image objects expected by legacy builds
   const makeImageObj = (imgUrl) => ({
     uri: imgUrl,
     url_list: [imgUrl, imgUrl],
     width: 720,
-    height: 720
+    height: 1280
   });
 
-  // Helper function to inject full avatar, video cover, music, and status flags
-  const formatAweme = (item) => {
+  // Helper function to pad Aweme objects with legacy fields
+  const formatAweme = (item, index) => {
     const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
     const authorPic = item.author?.avatar_thumb?.url_list?.[0] || defaultPic;
     const avatarObj = makeImageObj(authorPic);
+    const uniqueAwemeId = item.aweme_id || `${Date.now()}${index}`;
 
     return {
-      aweme_type: 0, // 🔑 0 = Standard Video item (Required for feed rendering)
+      aweme_id: uniqueAwemeId,
+      aweme_type: 0,
       rate: 1,
-      ...item,
+      desc: item.desc || "",
+      create_time: Math.floor(Date.now() / 1000),
       author: {
         uid: item.author?.uid || "7000000006",
         short_id: item.author?.uid || "7000000006",
@@ -65,7 +72,7 @@ export default async (req) => {
       },
       video: {
         ...item.video,
-        duration: item.video?.duration || 15000, // 🔑 Required to prevent instant video skip/end
+        duration: item.video?.duration || 15000,
         height: item.video?.height || 1280,
         width: item.video?.width || 720,
         ratio: "720p",
@@ -84,14 +91,14 @@ export default async (req) => {
         allow_react: true
       },
       statistics: {
-        aweme_id: item.aweme_id,
+        aweme_id: uniqueAwemeId,
         digg_count: item.statistics?.digg_count || 1000,
         comment_count: item.statistics?.comment_count || 50,
         share_count: item.statistics?.share_count || 10,
         play_count: 50000
       },
       status: {
-        aweme_id: item.aweme_id,
+        aweme_id: uniqueAwemeId,
         is_delete: false,
         allow_comment: true,
         allow_share: true,
@@ -102,7 +109,7 @@ export default async (req) => {
     };
   };
 
-  // --- RAW AWEME VIDEO LIST ---
+  // --- FULL 10-VIDEO AWEME LIST ---
   const rawAwemeList = [
     {
       "aweme_id": "1234567890",
@@ -426,28 +433,30 @@ export default async (req) => {
     }
   ];
 
-  // Map avatar and music image keys onto all items
-  const formattedAwemeList = rawAwemeList.map(formatAweme);
-
-  // --- RANDOMIZE ARRAY (Fisher-Yates Shuffle) ---
-  const shuffledList = [...formattedAwemeList];
+  // Map and shuffle array
+  const formattedList = rawAwemeList.map(formatAweme);
+  const shuffledList = [...formattedList];
   for (let i = shuffledList.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
   }
 
-  const now = Date.now();
+  // Next cursor calculation
+  const currentCursorVal = parseInt(reqMaxCursor, 10) || 0;
+  const nextCursorVal = currentCursorVal + shuffledList.length;
 
   const feedPayload = {
     status_code: 0,
-    min_cursor: now - 60000,
-    max_cursor: now,
-    has_more: 1, // 🔑 Must remain 1 for infinite scroll in v15.0.0
+    min_cursor: currentCursorVal,
+    max_cursor: nextCursorVal,
+    has_more: 1,
+    block_code: 0,
+    status_msg: "",
     aweme_list: shuffledList,
     home_model: 0,
-    refresh_clear: 1,
+    refresh_clear: 0,
     extra: {
-      now: now,
+      now: Date.now(),
       logid: `feed_${Math.floor(Math.random() * 1000000)}`
     }
   };
