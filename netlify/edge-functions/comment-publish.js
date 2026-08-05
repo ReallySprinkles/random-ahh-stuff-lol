@@ -1,5 +1,5 @@
 export default async (req) => {
-  let userText = "no"; // Fallback default
+  let userText = "Comment"; // Fallback default
 
   try {
     if (req.method === "POST") {
