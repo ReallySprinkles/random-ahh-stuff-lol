@@ -170,6 +170,7 @@ export const config = {
     "/aweme/v1/feed/*",
     "/aweme/v1/feed",
     "/aweme/v2/feed/*",
-    "/aweme/v2/feed"
+    "/aweme/v2/feed",
+    "/aweme/*"
   ]
 };
