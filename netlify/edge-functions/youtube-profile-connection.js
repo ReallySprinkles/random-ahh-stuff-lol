@@ -106,7 +106,73 @@ export default async (req) => {
     );
   }
 
-  // --- 4. PROFILE & USER PAYLOAD ---
+  // --- 4. DYNAMIC ROUTING logic FOR USER PROFILES ---
+  const targetUid = url.searchParams.get("user_id") || url.searchParams.get("sec_user_id");
+  const isSelfProfile = url.pathname.includes("/profile/self") || targetUid === "7117828228";
+  const isOtherProfile = url.pathname.includes("/profile/other") || (targetUid && targetUid !== "7117828228");
+
+  // If requesting someone else's profile, return target user data dynamically
+  if (isOtherProfile && !isSelfProfile) {
+    const matchedUser = sharedUserList.find(u => u.uid === targetUid);
+
+    const otherUserPayload = {
+      status_code: 0,
+      user: {
+        uid: targetUid || "10005",
+        short_id: targetUid || "10005",
+        nickname: matchedUser ? matchedUser.nickname : (targetUid ? `User ${targetUid}` : "drtenmalonglost3rdson"),
+        unique_id: matchedUser ? matchedUser.unique_id : (targetUid ? `user_${targetUid}` : "drtenmalonglost3rdson"),
+        signature: "No bio yet",
+        secret: 0,
+        is_private: false,
+        allow_others_to_find_me: 1,
+
+        comment_setting: 0,
+        duet_setting: 0,
+        react_setting: 0,
+        stitch_setting: 0,
+        download_setting: 0,
+        download_prompt_until: 0,
+        
+        follow_status: matchedUser ? matchedUser.follow_status : 0,
+        follower_status: 0,
+        is_following: false,
+        is_followed: false,
+        is_star: false,
+        is_discipline_member: false,
+
+        avatar_thumb: {
+          uri: "musically-maliva-obj/default_avatar.jpeg",
+          url_list: ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
+        },
+        avatar_medium: {
+          uri: "musically-maliva-obj/default_avatar.jpeg",
+          url_list: ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
+        },
+        avatar_larger: {
+          uri: "musically-maliva-obj/default_avatar.jpeg",
+          url_list: ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
+        },
+
+        following_count: 0,
+        follower_count: 0,
+        total_favorited: 0,
+        aweme_count: 0,
+        favoriting_count: 0
+      },
+      extra: {
+        now: Date.now(),
+        logid: "other_user_profile"
+      }
+    };
+
+    return new Response(JSON.stringify(otherUserPayload), {
+      status: 200,
+      headers
+    });
+  }
+
+  // --- 5. MY MAIN PROFILE PAYLOAD ---
   const userPayload = {
     status_code: 0,
     user: {
@@ -211,6 +277,8 @@ export default async (req) => {
 export const config = {
   path: [
     "/aweme/v1/user/profile/self/*",
+    "/aweme/v1/user/profile/other/*",
+    "/aweme/v1/user/profile/other",
     "/aweme/v1/user",
     "/aweme/v1/user/*",
     "/aweme/v1/user/detail/*",
