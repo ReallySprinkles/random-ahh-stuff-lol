@@ -5,7 +5,7 @@ export default async () => {
       comment: {
         cid: "9000000000000000001",
         text: "no",
-        create_time: 0,
+        create_time: 1,
         aweme_id: "7000000000000000001",
         user: {
           uid: "7117828228",
@@ -13,7 +13,7 @@ export default async () => {
           nickname: "sprinkles",
           avatar_thumb: {
             url_list: [
-              "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/example~c5_168x168.jpeg"
+              "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png"
             ]
           }
         }
