@@ -14,7 +14,7 @@ export default async (req) => {
 
   // Helper function to inject full avatar and music cover objects
   const formatAweme = (item) => {
-    const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg";
+    const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
     const authorPic = item.author?.avatar_thumb?.url_list?.[0] || defaultPic;
 
     return {
