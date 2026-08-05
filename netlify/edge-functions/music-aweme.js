@@ -13,7 +13,7 @@ export default async (req) => {
   }
 
   // Cover thumbnail image for sound grid rendering
-  const defaultCoverUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg";
+  const defaultCoverUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4234.png";
 
   const musicAwemePayload = {
     status_code: 0,
