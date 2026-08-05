@@ -12,28 +12,43 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // Helper function to inject full avatar and music cover objects
+  // --- HELPER TO FORMAT AVATAR OBJECTS FOR LEGACY BUILDS ---
+  const makeImageObj = (imgUrl) => ({
+    uri: imgUrl,
+    url_list: [imgUrl, imgUrl],
+    width: 720,
+    height: 720
+  });
+
+  // Helper function to inject full avatar, video cover, and music cover objects
   const formatAweme = (item) => {
     const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
     const authorPic = item.author?.avatar_thumb?.url_list?.[0] || defaultPic;
+    const avatarObj = makeImageObj(authorPic);
 
     return {
       ...item,
       author: {
         ...item.author,
-        avatar_thumb: { url_list: [authorPic] },
-        avatar_medium: { url_list: [authorPic] },
-        avatar_larger: { url_list: [authorPic] },
-        avatar_168x168: { url_list: [authorPic] },
-        avatar_300x300: { url_list: [authorPic] }
+        avatar_thumb: avatarObj,
+        avatar_medium: avatarObj,
+        avatar_larger: avatarObj,
+        avatar_168x168: avatarObj,
+        avatar_300x300: avatarObj
       },
       music: {
         ...item.music,
-        // 🔑 Music cover fields required for the spinning disc artwork
-        cover_thumb: { url_list: [authorPic] },
-        cover_medium: { url_list: [authorPic] },
-        cover_large: { url_list: [authorPic] },
-        cover_hd: { url_list: [authorPic] }
+        // 🔑 Music cover fields required for spinning disc artwork
+        cover_thumb: avatarObj,
+        cover_medium: avatarObj,
+        cover_large: avatarObj,
+        cover_hd: avatarObj
+      },
+      video: {
+        ...item.video,
+        cover: item.video?.cover || avatarObj,
+        dynamic_cover: item.video?.dynamic_cover || avatarObj,
+        origin_cover: item.video?.origin_cover || avatarObj
       }
     };
   };
@@ -472,14 +487,18 @@ export default async (req) => {
     [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
   }
 
+  const now = Date.now();
+
   const feedPayload = {
     status_code: 0,
-    min_cursor: 0,
-    max_cursor: 0,
-    has_more: 1,
+    min_cursor: now - 10000, // Dynamic timestamp prevents end-of-feed triggers
+    max_cursor: now,
+    has_more: 1, // 🔑 Must remain 1 for infinite scroll in v15.0.0
     aweme_list: shuffledList,
+    home_model: 0,
+    refresh_clear: 1,
     extra: {
-      now: Date.now(),
+      now: now,
       logid: `feed_${Math.floor(Math.random() * 1000000)}`
     }
   };
