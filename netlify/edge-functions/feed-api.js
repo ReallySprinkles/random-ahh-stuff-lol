@@ -12,9 +12,9 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  // Parse current cursor from app request to prevent page-end triggers
   const url = new URL(req.url);
   const reqMaxCursor = url.searchParams.get("max_cursor") || "0";
+  const now = Date.now();
 
   // Helper to construct image objects expected by legacy builds
   const makeImageObj = (imgUrl) => ({
@@ -29,17 +29,17 @@ export default async (req) => {
     const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
     const authorPic = item.author?.avatar_thumb?.url_list?.[0] || defaultPic;
     const avatarObj = makeImageObj(authorPic);
-    const uniqueAwemeId = item.aweme_id || `${Date.now()}${index}`;
+    const uniqueAwemeId = String(item.aweme_id || `${now}${index}`);
 
     return {
       aweme_id: uniqueAwemeId,
       aweme_type: 0,
       rate: 1,
       desc: item.desc || "",
-      create_time: Math.floor(Date.now() / 1000),
+      create_time: Math.floor(now / 1000),
       author: {
-        uid: item.author?.uid || "7000000006",
-        short_id: item.author?.uid || "7000000006",
+        uid: String(item.author?.uid || "7000000006"),
+        short_id: String(item.author?.uid || "7000000006"),
         nickname: item.author?.nickname || "sprinkles",
         unique_id: item.author?.unique_id || "sprinkles.dude",
         secret: 0,
@@ -55,8 +55,8 @@ export default async (req) => {
         avatar_300x300: avatarObj
       },
       music: {
-        id: item.music?.id || "7000000000000000001",
-        mid: item.music?.id || "7000000000000000001",
+        id: String(item.music?.id || "7000000000000000001"),
+        mid: String(item.music?.id || "7000000000000000001"),
         title: item.music?.title || "Original Sound",
         author: item.music?.author || "sprinkles",
         duration: 15,
@@ -109,7 +109,7 @@ export default async (req) => {
     };
   };
 
-  // --- FULL 10-VIDEO AWEME LIST ---
+  // --- RAW AWEME VIDEO LIST ---
   const rawAwemeList = [
     {
       "aweme_id": "1234567890",
@@ -441,22 +441,25 @@ export default async (req) => {
     [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
   }
 
-  // Next cursor calculation
-  const currentCursorVal = parseInt(reqMaxCursor, 10) || 0;
-  const nextCursorVal = currentCursorVal + shuffledList.length;
+  // --- CURSOR TIMING CALCULATIONS ---
+  // If request contains 0/null, start from current timestamp; otherwise step forward.
+  const baseCursor = parseInt(reqMaxCursor, 10) > 0 ? parseInt(reqMaxCursor, 10) : now;
+  const nextCursor = baseCursor + 10000;
 
   const feedPayload = {
     status_code: 0,
-    min_cursor: currentCursorVal,
-    max_cursor: nextCursorVal,
+    min_cursor: baseCursor - 60000,
+    max_cursor: nextCursor,
     has_more: 1,
     block_code: 0,
     status_msg: "",
     aweme_list: shuffledList,
     home_model: 0,
     refresh_clear: 0,
+    post_back: "1",
+    rid: `${now}_feed_0`,
     extra: {
-      now: Date.now(),
+      now: now,
       logid: `feed_${Math.floor(Math.random() * 1000000)}`
     }
   };
