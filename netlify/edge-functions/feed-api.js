@@ -3,7 +3,7 @@
 export default async (req) => {
   const headers = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "*",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-SS-REQ-TICK",
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Content-Type": "application/json; charset=utf-8"
   };
@@ -12,99 +12,28 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  const url = new URL(req.url);
-  const reqMaxCursor = url.searchParams.get("max_cursor") || "0";
-  const now = Date.now();
-
-  // Helper to construct image objects expected by legacy builds
-  const makeImageObj = (imgUrl) => ({
-    uri: imgUrl,
-    url_list: [imgUrl, imgUrl],
-    width: 720,
-    height: 1280
-  });
-
-  // Helper function to pad Aweme objects with legacy fields
-  const formatAweme = (item, index) => {
+  // Helper function to inject full avatar and music cover objects
+  const formatAweme = (item) => {
     const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png";
     const authorPic = item.author?.avatar_thumb?.url_list?.[0] || defaultPic;
-    const avatarObj = makeImageObj(authorPic);
-    const uniqueAwemeId = String(item.aweme_id || `${now}${index}`);
 
     return {
-      aweme_id: uniqueAwemeId,
-      aweme_type: 0,
-      rate: 1,
-      desc: item.desc || "",
-      create_time: Math.floor(now / 1000),
+      ...item,
       author: {
-        uid: String(item.author?.uid || "7000000006"),
-        short_id: String(item.author?.uid || "7000000006"),
-        nickname: item.author?.nickname || "sprinkles",
-        unique_id: item.author?.unique_id || "sprinkles.dude",
-        secret: 0,
-        is_private: false,
-        custom_verify: "",
-        enterprise_verify_reason: "",
-        follow_status: 0,
-        follower_status: 0,
-        avatar_thumb: avatarObj,
-        avatar_medium: avatarObj,
-        avatar_larger: avatarObj,
-        avatar_168x168: avatarObj,
-        avatar_300x300: avatarObj
+        ...item.author,
+        avatar_thumb: { url_list: [authorPic] },
+        avatar_medium: { url_list: [authorPic] },
+        avatar_larger: { url_list: [authorPic] },
+        avatar_168x168: { url_list: [authorPic] },
+        avatar_300x300: { url_list: [authorPic] }
       },
       music: {
-        id: String(item.music?.id || "7000000000000000001"),
-        mid: String(item.music?.id || "7000000000000000001"),
-        title: item.music?.title || "Original Sound",
-        author: item.music?.author || "sprinkles",
-        duration: 15,
-        status: 1,
-        play_url: item.music?.play_url || {
-          uri: "music/play.mp3",
-          url_list: ["https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/export_1785356065271.mp3"]
-        },
-        cover_thumb: avatarObj,
-        cover_medium: avatarObj,
-        cover_large: avatarObj,
-        cover_hd: avatarObj
-      },
-      video: {
-        ...item.video,
-        duration: item.video?.duration || 15000,
-        height: item.video?.height || 1280,
-        width: item.video?.width || 720,
-        ratio: "720p",
-        has_watermark: false,
-        cover: item.video?.cover || avatarObj,
-        dynamic_cover: item.video?.dynamic_cover || avatarObj,
-        origin_cover: item.video?.origin_cover || avatarObj,
-        download_addr: item.video?.play_addr
-      },
-      video_control: {
-        allow_download: true,
-        share_type: 0,
-        show_progressbar: 1,
-        timer_status: 1,
-        allow_duet: true,
-        allow_react: true
-      },
-      statistics: {
-        aweme_id: uniqueAwemeId,
-        digg_count: item.statistics?.digg_count || 1000,
-        comment_count: item.statistics?.comment_count || 50,
-        share_count: item.statistics?.share_count || 10,
-        play_count: 50000
-      },
-      status: {
-        aweme_id: uniqueAwemeId,
-        is_delete: false,
-        allow_comment: true,
-        allow_share: true,
-        private_status: 0,
-        in_reviewing: false,
-        reviewed: 1
+        ...item.music,
+        // 🔑 Music cover fields required for the spinning disc artwork
+        cover_thumb: { url_list: [authorPic] },
+        cover_medium: { url_list: [authorPic] },
+        cover_large: { url_list: [authorPic] },
+        cover_hd: { url_list: [authorPic] }
       }
     };
   };
@@ -141,6 +70,16 @@ export default async (req) => {
         "digg_count": 5744,
         "comment_count": 302,
         "share_count": 2076
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://tiktok.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -173,6 +112,16 @@ export default async (req) => {
         "digg_count": 108816,
         "comment_count": 1155,
         "share_count": 11418
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -205,6 +154,16 @@ export default async (req) => {
         "digg_count": 1468,
         "comment_count": 161,
         "share_count": 469
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -237,6 +196,16 @@ export default async (req) => {
         "digg_count": 152,
         "comment_count": 70,
         "share_count": 10
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -269,6 +238,16 @@ export default async (req) => {
         "digg_count": 106612,
         "comment_count": 635,
         "share_count": 6349
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -301,6 +280,16 @@ export default async (req) => {
         "digg_count": 6000,
         "comment_count": 60,
         "share_count": 25
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -333,6 +322,16 @@ export default async (req) => {
         "digg_count": 7000,
         "comment_count": 70,
         "share_count": 30
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -365,6 +364,16 @@ export default async (req) => {
         "digg_count": 8000,
         "comment_count": 80,
         "share_count": 35
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -397,6 +406,16 @@ export default async (req) => {
         "digg_count": 9000,
         "comment_count": 90,
         "share_count": 40
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     },
     {
@@ -429,37 +448,38 @@ export default async (req) => {
         "digg_count": 10000,
         "comment_count": 100,
         "share_count": 45
+      },
+      "status": {
+        "comment_status": 0,
+        "allow_comment": true,
+        "private_status": 0
+      },
+      "share_info": {
+        "share_url": "https://example.com",
+        "share_title": "hi",
+        "share_desc": "Check out this video!"
       }
     }
   ];
 
-  // Map and shuffle array
-  const formattedList = rawAwemeList.map(formatAweme);
-  const shuffledList = [...formattedList];
+  // Map avatar and music image keys onto all items
+  const formattedAwemeList = rawAwemeList.map(formatAweme);
+
+  // --- RANDOMIZE ARRAY (Fisher-Yates Shuffle) ---
+  const shuffledList = [...formattedAwemeList];
   for (let i = shuffledList.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
   }
 
-  // --- CURSOR TIMING CALCULATIONS ---
-  // If request contains 0/null, start from current timestamp; otherwise step forward.
-  const baseCursor = parseInt(reqMaxCursor, 10) > 0 ? parseInt(reqMaxCursor, 10) : now;
-  const nextCursor = baseCursor + 10000;
-
   const feedPayload = {
     status_code: 0,
-    min_cursor: baseCursor - 60000,
-    max_cursor: nextCursor,
+    min_cursor: 0,
+    max_cursor: 0,
     has_more: 1,
-    block_code: 0,
-    status_msg: "",
     aweme_list: shuffledList,
-    home_model: 0,
-    refresh_clear: 0,
-    post_back: "1",
-    rid: `${now}_feed_0`,
     extra: {
-      now: now,
+      now: Date.now(),
       logid: `feed_${Math.floor(Math.random() * 1000000)}`
     }
   };
