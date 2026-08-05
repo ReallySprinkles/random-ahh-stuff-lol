@@ -165,8 +165,8 @@ export default async (req) => {
           avatar_168x168: otherAvatarObj,
           avatar_300x300: otherAvatarObj,
 
-          following_count: 0,
-          follower_count: 0,
+          following_count: 1000,
+          follower_count: 1001,
           total_favorited: 0,
           aweme_count: 0,
           favoriting_count: 0
