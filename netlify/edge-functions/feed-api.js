@@ -44,7 +44,7 @@ export default async (req) => {
       "aweme_id": "1234567890",
       "desc": "Iphone Tole Tole Phonk 😂😂👑🫱🫱🫱 #wiedlak #bloxyzwiedlakkasefar #wiedlakfamily #meme",
       "author": {
-        "uid": "12345",
+        "uid": "7000000001",
         "nickname": "bloxyz wiedlak kasefar",
         "unique_id": "bloxyz.wiedlak.kasefar",
         "avatar_thumb": {
@@ -86,7 +86,7 @@ export default async (req) => {
       "aweme_id": "0987654321",
       "desc": "#Spiderman #polyesteredit",
       "author": {
-        "uid": "12345",
+        "uid": "7000000002",
         "nickname": "Gojo lover",
         "unique_id": "gojo.lover676",
         "avatar_thumb": {
@@ -128,7 +128,7 @@ export default async (req) => {
       "aweme_id": "1000000003",
       "desc": "#CapCut Ishowspeed yawn phonk sparta remix #ishowspeed #yawn #spartaremix #fyp",
       "author": {
-        "uid": "12345",
+        "uid": "7000000003",
         "nickname": "💲",
         "unique_id": "unknownscarface1",
         "avatar_thumb": {
@@ -170,8 +170,8 @@ export default async (req) => {
       "aweme_id": "1000000004",
       "desc": "i just love the Kali memes, he rlly deserved it #techtok #tech #kali #leaks #iphoneair",
       "author": {
-        "uid": "12345",
-        "nickname": "𝘿𝙮𝙡𝙗𝙖𝙣𝙖𝙣𝙏𝙚𝙘𝙝",
+        "uid": "7000000004",
+        "nickname": "𝘿𝙮𝙡𝙖𝙣𝙖𝙣𝙏𝙚𝙘𝙝",
         "unique_id": "dylbanantech",
         "avatar_thumb": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
@@ -212,7 +212,7 @@ export default async (req) => {
       "aweme_id": "1000000005",
       "desc": "#fyp #funny #xycba #hamjimenoippo #cashapp",
       "author": {
-        "uid": "12345",
+        "uid": "7000000005",
         "nickname": "drtenmalonglost3rdson",
         "unique_id": "drtenmalonglost3rdson",
         "avatar_thumb": {
@@ -254,7 +254,7 @@ export default async (req) => {
       "aweme_id": "1000000006",
       "desc": "video 6",
       "author": {
-        "uid": "12345",
+        "uid": "7000000006",
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
@@ -296,7 +296,7 @@ export default async (req) => {
       "aweme_id": "1000000007",
       "desc": "video 7",
       "author": {
-        "uid": "12345",
+        "uid": "7000000006",
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
@@ -338,7 +338,7 @@ export default async (req) => {
       "aweme_id": "1000000008",
       "desc": "video 8",
       "author": {
-        "uid": "12345",
+        "uid": "7000000006",
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
@@ -380,7 +380,7 @@ export default async (req) => {
       "aweme_id": "1000000009",
       "desc": "video 9",
       "author": {
-        "uid": "12345",
+        "uid": "7000000006",
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
@@ -422,7 +422,7 @@ export default async (req) => {
       "aweme_id": "1000000010",
       "desc": "video 10",
       "author": {
-        "uid": "12345",
+        "uid": "7000000006",
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
