@@ -12,8 +12,34 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
+  // Helper function to inject full avatar and music cover objects
+  const formatAweme = (item) => {
+    const defaultPic = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg";
+    const authorPic = item.author?.avatar_thumb?.url_list?.[0] || defaultPic;
+
+    return {
+      ...item,
+      author: {
+        ...item.author,
+        avatar_thumb: { url_list: [authorPic] },
+        avatar_medium: { url_list: [authorPic] },
+        avatar_larger: { url_list: [authorPic] },
+        avatar_168x168: { url_list: [authorPic] },
+        avatar_300x300: { url_list: [authorPic] }
+      },
+      music: {
+        ...item.music,
+        // 🔑 Music cover fields required for the spinning disc artwork
+        cover_thumb: { url_list: [authorPic] },
+        cover_medium: { url_list: [authorPic] },
+        cover_large: { url_list: [authorPic] },
+        cover_hd: { url_list: [authorPic] }
+      }
+    };
+  };
+
   // --- RAW AWEME VIDEO LIST ---
-  const awemeList = [
+  const rawAwemeList = [
     {
       "aweme_id": "1234567890",
       "desc": "Iphone Tole Tole Phonk 😂😂👑🫱🫱🫱 #wiedlak #bloxyzwiedlakkasefar #wiedlakfamily #meme",
@@ -22,12 +48,6 @@ export default async (req) => {
         "nickname": "bloxyz wiedlak kasefar",
         "unique_id": "bloxyz.wiedlak.kasefar",
         "avatar_thumb": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
@@ -71,12 +91,6 @@ export default async (req) => {
         "unique_id": "gojo.lover676",
         "avatar_thumb": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
       "music": {
@@ -118,12 +132,6 @@ export default async (req) => {
         "nickname": "💲",
         "unique_id": "unknownscarface1",
         "avatar_thumb": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
@@ -167,12 +175,6 @@ export default async (req) => {
         "unique_id": "dylbanantech",
         "avatar_thumb": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
       "music": {
@@ -214,12 +216,6 @@ export default async (req) => {
         "nickname": "drtenmalonglost3rdson",
         "unique_id": "drtenmalonglost3rdson",
         "avatar_thumb": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
-        },
-        "avatar_larger": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg"]
         }
       },
@@ -263,12 +259,6 @@ export default async (req) => {
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
       "music": {
@@ -310,12 +300,6 @@ export default async (req) => {
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
@@ -359,12 +343,6 @@ export default async (req) => {
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
       "music": {
@@ -406,12 +384,6 @@ export default async (req) => {
         "nickname": "sprinkles",
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
@@ -455,12 +427,6 @@ export default async (req) => {
         "unique_id": "sprinkles.dude",
         "avatar_thumb": {
           "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_medium": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
-        },
-        "avatar_larger": {
-          "url_list": ["https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg"]
         }
       },
       "music": {
@@ -496,8 +462,11 @@ export default async (req) => {
     }
   ];
 
+  // Map avatar and music image keys onto all items
+  const formattedAwemeList = rawAwemeList.map(formatAweme);
+
   // --- RANDOMIZE ARRAY (Fisher-Yates Shuffle) ---
-  const shuffledList = [...awemeList];
+  const shuffledList = [...formattedAwemeList];
   for (let i = shuffledList.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffledList[i], shuffledList[j]] = [shuffledList[j], shuffledList[i]];
