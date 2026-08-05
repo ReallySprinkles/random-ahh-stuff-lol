@@ -14,7 +14,7 @@ export default async (req) => {
     return new Response(null, { status: 200, headers });
   }
 
-  const profileUrl = `https://musically.com/h5/share/usr/7000000006`;
+  const profileUrl = `https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png`;
   const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(profileUrl)}`;
   const myPfpUrl = "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg";
 
@@ -25,7 +25,7 @@ export default async (req) => {
     "7000000003": { nickname: "💲", unique_id: "unknownscarface1", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
     "7000000004": { nickname: "𝘿𝙮𝙡𝙖𝙣𝙖𝙣𝙏𝙚𝙘𝙝", unique_id: "dylbanantech", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" },
     "7000000005": { nickname: "drtenmalonglost3rdson", unique_id: "drtenmalonglost3rdson", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_4238.jpeg" },
-    "7000000006": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/IMG_3824.jpeg" }
+    "7000000006": { nickname: "sprinkles", unique_id: "sprinkles.dude", avatar: "https://raw.githubusercontent.com/ReallySprinkles/random-ahh-stuff-lol/refs/heads/main/finn_the_human_pfp_.png" }
   };
 
   const sharedUserList = [
