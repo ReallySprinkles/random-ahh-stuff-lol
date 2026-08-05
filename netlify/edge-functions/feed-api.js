@@ -160,11 +160,11 @@ export default async (req) => {
   },
   {
     "aweme_id": "1000000004",
-    "desc": "video 4",
+    "desc": "i just love the Kali memes, he rlly deserved it #techtok #tech #kali #leaks #iphoneair",
     "author": {
       "uid": "12345",
-      "nickname": "sprinkles",
-      "unique_id": "sprinkles.dude",
+      "nickname": "𝘿𝙮𝙡𝙗𝙖𝙣𝙖𝙣𝙏𝙚𝙘𝙝",
+      "unique_id": "dylbanantech",
       "avatar_thumb": {
         "url_list": [
           "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/89e189f03cef0022a8460c231228f885~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=269c71b0&x-expires=1785531600&x-signature=4if9r4QSQfDJoMY4wEOVdmrZGh4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=sg1"
@@ -184,16 +184,16 @@ export default async (req) => {
     "video": {
       "play_addr": {
         "url_list": [
-          "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/export_1785356065271.mp4"
+          "https://github.com/ReallySprinkles/random-ahh-stuff-lol/raw/refs/heads/main/v24044gl0000d9p4esfog65okk7d3fd0.mp4"
         ]
       },
       "width": 720,
       "height": 1280
     },
     "statistics": {
-      "digg_count": 4000,
-      "comment_count": 40,
-      "share_count": 15
+      "digg_count": 152,
+      "comment_count": 70,
+      "share_count": 10
     },
     "status": {
       "comment_status": 0,
