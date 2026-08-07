@@ -35,20 +35,21 @@ export default async (req) => {
     }
   }
 
+  // Parse action integer (1 = favorited, 0 = unfavorited)
   const isCollect = actionParam !== null && actionParam !== undefined ? parseInt(actionParam, 10) : 1;
-  const numericMusicId = String(musicId);
+  const strId = String(musicId);
 
-  // Return full music payload structure expected by older app versions
-  const responseData = {
+  const responsePayload = JSON.stringify({
     status_code: 0,
     status_msg: "",
     is_collect: isCollect,
     collect_status: isCollect,
     is_favorite: isCollect,
     favorite_status: isCollect,
+    music_id: strId,
     music_info: {
-      id: numericMusicId,
-      id_str: numericMusicId,
+      id: strId,
+      id_str: strId,
       title: "Original Sound",
       author: "sprinkles",
       is_original: true,
@@ -56,8 +57,8 @@ export default async (req) => {
       user_count: 1
     },
     music: {
-      id: numericMusicId,
-      id_str: numericMusicId,
+      id: strId,
+      id_str: strId,
       collect_stat: isCollect
     },
     extra: {
@@ -65,11 +66,14 @@ export default async (req) => {
       fatal_item_ids: [],
       logid: `collect_${Math.floor(Math.random() * 1000000)}`
     }
-  };
+  });
 
-  return new Response(JSON.stringify(responseData), {
+  return new Response(responsePayload, {
     status: 200,
-    headers
+    headers: {
+      ...headers,
+      "Content-Length": String(new TextEncoder().encode(responsePayload).length)
+    }
   });
 };
 
