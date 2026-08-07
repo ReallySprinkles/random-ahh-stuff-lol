@@ -14,31 +14,31 @@ export default async (req) => {
 
   const url = new URL(req.url);
 
-  // 1. Check URL query params for action/type
   let actionParam = url.searchParams.get("action") || url.searchParams.get("collect_status");
+  let musicId = url.searchParams.get("music_id") || url.searchParams.get("id") || "7000000000000000001";
 
-  // 2. Parse form-urlencoded or JSON body if action isn't in URL query
-  if (actionParam === null && req.method === "POST") {
+  if (req.method === "POST") {
     try {
       const contentType = req.headers.get("content-type") || "";
       if (contentType.includes("application/x-www-form-urlencoded")) {
         const text = await req.clone().text();
         const bodyParams = new URLSearchParams(text);
-        actionParam = bodyParams.get("action") || bodyParams.get("collect_status");
+        actionParam = actionParam || bodyParams.get("action") || bodyParams.get("collect_status");
+        musicId = bodyParams.get("music_id") || bodyParams.get("id") || musicId;
       } else if (contentType.includes("application/json")) {
         const body = await req.clone().json();
-        actionParam = body.action ?? body.collect_status ?? null;
-        if (actionParam !== null) actionParam = String(actionParam);
+        actionParam = actionParam || body.action || body.collect_status;
+        musicId = body.music_id || body.id || musicId;
       }
     } catch (_) {
-      // Ignore body parse errors
+      // Body parse fallback
     }
   }
 
-  // Determine state: default to 1 (collected/favorited)
-  const isCollect = actionParam !== null ? parseInt(actionParam, 10) : 1;
+  const isCollect = actionParam !== null && actionParam !== undefined ? parseInt(actionParam, 10) : 1;
+  const numericMusicId = String(musicId);
 
-  // Complete response object handling all client variations
+  // Return full music payload structure expected by older app versions
   const responseData = {
     status_code: 0,
     status_msg: "",
@@ -46,6 +46,20 @@ export default async (req) => {
     collect_status: isCollect,
     is_favorite: isCollect,
     favorite_status: isCollect,
+    music_info: {
+      id: numericMusicId,
+      id_str: numericMusicId,
+      title: "Original Sound",
+      author: "sprinkles",
+      is_original: true,
+      collect_stat: isCollect,
+      user_count: 1
+    },
+    music: {
+      id: numericMusicId,
+      id_str: numericMusicId,
+      collect_stat: isCollect
+    },
     extra: {
       now: Date.now(),
       fatal_item_ids: [],
