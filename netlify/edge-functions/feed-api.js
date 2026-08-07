@@ -23,11 +23,11 @@ export default async (req) => {
 
     return {
       ...item,
-      // 🔑 Initial collection/favorite states for the video itself
+      // 🔑 Essential video/music collection flags on the root object
       is_collect: false,
       collect_stat: 0,
       user_digged: 0,
-      // Root status overrides for legacy clients
+      is_favorite: false,
       review_status: 0,
       is_pgcshow: false,
       author: {
@@ -40,9 +40,13 @@ export default async (req) => {
       },
       music: {
         ...item.music,
-        // 🔑 CRITICAL: Required for client to bind the music favorite button UI state
+        id: String(item.music?.id || "7000000000000000001"),
+        id_str: String(item.music?.id || "7000000000000000001"),
+        // 🔑 Full music collection state payload
         collect_stat: 0,
         is_collect: false,
+        is_favorite: false,
+        status: 1, // 1 = Active / Available for collection
         // Music cover fields required for the spinning disc artwork
         cover_thumb: { url_list: [authorPic] },
         cover_medium: { url_list: [authorPic] },
