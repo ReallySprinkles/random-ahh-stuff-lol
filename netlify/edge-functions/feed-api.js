@@ -23,7 +23,11 @@ export default async (req) => {
 
     return {
       ...item,
-      // 🔑 Root status overrides for legacy clients
+      // 🔑 Initial collection/favorite states for the video itself
+      is_collect: false,
+      collect_stat: 0,
+      user_digged: 0,
+      // Root status overrides for legacy clients
       review_status: 0,
       is_pgcshow: false,
       author: {
@@ -36,7 +40,10 @@ export default async (req) => {
       },
       music: {
         ...item.music,
-        // 🔑 Music cover fields required for the spinning disc artwork
+        // 🔑 CRITICAL: Required for client to bind the music favorite button UI state
+        collect_stat: 0,
+        is_collect: false,
+        // Music cover fields required for the spinning disc artwork
         cover_thumb: { url_list: [authorPic] },
         cover_medium: { url_list: [authorPic] },
         cover_large: { url_list: [authorPic] },
@@ -47,8 +54,8 @@ export default async (req) => {
         allow_comment: true,
         comment_status: 0,
         private_status: 0,
-        allow_share: true,     // 🔑 Explicitly enables sharing sheet options
-        review_status: 0,      // 🔑 0 = Passed Review (bypasses "video is under review" lock)
+        allow_share: true,     // Explicitly enables sharing sheet options
+        review_status: 0,      // 0 = Passed Review (bypasses "video is under review" lock)
         download_status: 0,
         is_delete: false,
         is_prohibited: false
@@ -480,7 +487,7 @@ export default async (req) => {
     }
   ];
 
-  // Map avatars, covers, and review status onto all items
+  // Map avatars, covers, review status, and initial collection flags onto all items
   const formattedAwemeList = rawAwemeList.map(formatAweme);
 
   // --- RANDOMIZE ARRAY (Fisher-Yates Shuffle) ---
